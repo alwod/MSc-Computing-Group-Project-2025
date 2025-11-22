@@ -7,8 +7,6 @@ public class TourLocation {
     private String name;
     private LatLng latLng;
 
-
-
     // Constructors
     public TourLocation() {
         // Set the default location to sydney in australia, for no real reason other than it's obivously incorrect; and easier to notice
@@ -18,13 +16,12 @@ public class TourLocation {
         setName(defaultName);
         setLatLng(defaultCoords);
     }
-
     public TourLocation(String name, LatLng latLng) {
         setName(name);
         setLatLng(latLng);
     }
 
-
+    // toString
     public String toString() {
         String output = "";
 
@@ -39,7 +36,6 @@ public class TourLocation {
     public LatLng getLatLng() {
         return this.latLng;
     }
-
     public void setLatLng(LatLng latLng) {
         this.latLng = latLng;
     }
@@ -47,8 +43,8 @@ public class TourLocation {
     public String getName() {
         return this.name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-}
+    // end of getters and setters
+} // end of class
