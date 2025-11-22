@@ -1,6 +1,8 @@
+package com.example.edinburghtourapp;
+
 import com.google.android.gms.maps.model.LatLng;
 
-public class Location {
+public class TourLocation {
     // Instance variables
     private String name;
     private LatLng latLng;
@@ -8,7 +10,7 @@ public class Location {
 
 
     // Constructors
-    public Location() {
+    public TourLocation() {
         // Set the default location to sydney in australia, for no real reason other than it's obivously incorrect; and easier to notice
         String defaultName = "Sydney";
         LatLng defaultCoords = new LatLng(-34, 151);
@@ -16,8 +18,8 @@ public class Location {
         setName(defaultName);
         setLatLng(defaultCoords);
     }
-    
-    public Location(String name, LatLng latLng) {
+
+    public TourLocation(String name, LatLng latLng) {
         setName(name);
         setLatLng(latLng);
     }
