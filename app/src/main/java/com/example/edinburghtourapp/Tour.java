@@ -7,9 +7,11 @@ public class Tour {
 
     Boolean isAccessible = false;
 
-
-
-
+    // Constructors
+    public Tour(Boolean isAccessible, TourLocation [] locations) {
+        setAccessible(isAccessible);
+        setLocations(locations);
+    }
 
     public String toString() {
         String output = "";
