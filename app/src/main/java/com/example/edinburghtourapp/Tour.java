@@ -1,8 +1,9 @@
 package com.example.edinburghtourapp;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Tour {
+public class Tour implements Serializable {
     // Instance variables
     private String tourName;
     private ArrayList<TourLocation> tourLocations = new ArrayList<TourLocation>();

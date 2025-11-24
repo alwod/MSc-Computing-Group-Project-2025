@@ -2,7 +2,9 @@ package com.example.edinburghtourapp;
 
 import com.google.android.gms.maps.model.LatLng;
 
-public class TourLocation {
+import java.io.Serializable;
+
+public class TourLocation implements Serializable {
     // Instance variables
     private String name;
     private LatLng latLng;

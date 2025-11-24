@@ -50,7 +50,7 @@ public class SelectTourActivity extends ComponentActivity {
         testButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("LatLng", testLocation1.getLatLng());
+                intent.putExtra("testTour", 1);
                 startActivity(intent);
             }
         });

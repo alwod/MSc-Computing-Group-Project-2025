@@ -2,7 +2,6 @@ package com.example.edinburghtourapp;
 
 import androidx.fragment.app.FragmentActivity;
 
-import android.location.Location;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -13,12 +12,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.edinburghtourapp.databinding.ActivityMapsBinding;
 
+import java.util.ArrayList;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
-
-    LatLng test;
+    ArrayList<LatLng> markerPoints = new ArrayList<LatLng>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+//        if (getIntent().getExtras() != null) {
+//            Tour tour = (Tour) getIntent().getSerializableExtra("testTour");
+//
+//            for (TourLocation tempLocation : tour.getTourLocations()) {
+//                markerPoints.add(tempLocation.getLatLng());
+//            }
+//        }
+
+        mMap.setMyLocationEnabled(true);
     }
 
     /**
@@ -51,5 +60,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+
+//        mMap.addMarker(new MarkerOptions().position(markerPoints.get(0)).title("Marker"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(markerPoints.get(0)));
+
     }
 }
