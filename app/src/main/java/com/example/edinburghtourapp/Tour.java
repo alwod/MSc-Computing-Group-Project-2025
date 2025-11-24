@@ -1,18 +1,21 @@
 package com.example.edinburghtourapp;
 
+import java.util.ArrayList;
+
 public class Tour {
     // Instance variables
     private String tourName;
-    final static int ARRAY_SIZE = 3;
-    private TourLocation [] locations = new TourLocation[ARRAY_SIZE];
-
+    private ArrayList<TourLocation> tourLocations = new ArrayList<TourLocation>();
     Boolean isAccessible = false;
 
     // Constructors
-    public Tour(String tourName, Boolean isAccessible, TourLocation [] locations) {
+    public Tour(String tourName, Boolean isAccessible) {
         setTourName(tourName);
         setAccessible(isAccessible);
-        setLocations(locations);
+    }
+
+    public void addTour(TourLocation location) {
+        getTourLocations().add(location);
     }
 
     public String toString() {
@@ -27,8 +30,8 @@ public class Tour {
             output += "The tour is not considered accessible\n";
         }
 
-        for(int index = 0; index < getLocations().length; index++) {
-            output += getLocations()[index].toString();
+        for (TourLocation tempLocation : getTourLocations()) {
+            output += tempLocation.toString();
         }
 
         return output;
@@ -42,17 +45,17 @@ public class Tour {
         return this.isAccessible;
     }
 
-    public void setLocations(TourLocation[] locations) {
-        this.locations = locations;
+    public ArrayList<TourLocation> getTourLocations() {
+        return this.tourLocations;
     }
-    public TourLocation[] getLocations() {
-        return this.locations;
+
+    public void setTourLocations(ArrayList<TourLocation> tourLocations) {
+        this.tourLocations = tourLocations;
     }
 
     public String getTourName() {
         return this.tourName;
     }
-
     public void setTourName(String tourName) {
         this.tourName = tourName;
     }

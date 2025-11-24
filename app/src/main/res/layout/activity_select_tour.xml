@@ -34,12 +34,13 @@
         <LinearLayout
             android:id="@+id/tourList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" 
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             >
 
 <!--            This is each item in the list-->
             <LinearLayout
+                android:id="@+id/tour1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
@@ -58,6 +59,7 @@
 
             <!--            This is each item in the list-->
             <LinearLayout
+                android:id="@+id/tour2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
