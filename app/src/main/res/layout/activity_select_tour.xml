@@ -40,7 +40,6 @@
 
 <!--            This is each item in the list-->
             <LinearLayout
-                android:id="@+id/tour1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
@@ -48,18 +47,19 @@
                 android:background="#E0F2F1"
                 android:layout_marginBottom="10dp"
                 >
-                <TextView
+
+                <Button
+                    android:id="@+id/tour1Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Name of Tour 1"
+                    android:text="Tour 1"
                     >
-                </TextView>
+                </Button>
             </LinearLayout>
 <!--            End of individual item-->
 
             <!--            This is each item in the list-->
             <LinearLayout
-                android:id="@+id/tour2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
@@ -67,12 +67,13 @@
                 android:background="#E0F2F1"
                 android:layout_marginBottom="10dp"
                 >
-                <TextView
+                <Button
+                    android:id="@+id/tour2Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Name of Tour 2"
+                    android:text="Tour 2"
                     >
-                </TextView>
+                </Button>
             </LinearLayout>
             <!--            End of individual item-->
 
