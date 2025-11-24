@@ -2,6 +2,7 @@ package com.example.edinburghtourapp;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,13 +14,13 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class SelectTourActivity extends AppCompatActivity {
 
-    LatLng testLatLng1 = new LatLng(0, 0);
+    LatLng testLatLng1 = new LatLng(-34, 151);
     TourLocation testLocation1 = new TourLocation("Test Location 1", testLatLng1);
 
-    LatLng testLatLng2 = new LatLng(1, 1);
+    LatLng testLatLng2 = new LatLng(-34, 152);
     TourLocation testLocation2 = new TourLocation("Test Location 2", testLatLng2);
 
-    //Tour testTour = new Tour("Test Tour", false, );
+    Tour testTour = new Tour("Test Tour", false);
 
 
     @Override
@@ -33,11 +34,8 @@ public class SelectTourActivity extends AppCompatActivity {
             return insets;
         });
 
-        View text = findViewById(R.id.tour1);
-
-        //text.setOnClickListener();
-
-
+        testTour.addTour(testLocation1);
+        testTour.addTour(testLocation2);
 
     }
 }
