@@ -2,7 +2,10 @@ package com.example.edinburghtourapp;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -12,7 +15,17 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.edinburghtourapp.databinding.ActivityMapsBinding;
 
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -42,6 +55,88 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.setMyLocationEnabled(true);
     }
+
+    private String getDirectionsUrl(LatLng origin, LatLng destination) {
+        String str_origin = "origin=" + origin.latitude + ", " + origin.longitude;
+        String str_dest = "destination=" + destination.latitude + ", " + destination.longitude;
+        String sensor = "sensor = false";
+        String waypoints = "";
+        for (int index = 2; index < markerPoints.size(); index++) {
+            LatLng point = (LatLng) markerPoints.get(index);
+            if (index == 2) {
+                waypoints = "waypoints=";
+            }
+            waypoints += point.latitude + ", " + point.longitude + "|";
+        }
+
+        String parameters = str_origin + "&" + str_dest + "&" + sensor + "&" + waypoints;
+
+        String output = "json";
+        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters;
+        return url;
+    }
+
+    @SuppressLint("LongLogTag")
+    private String downloadUrl(String strUrl) throws IOException {
+        String data = "";
+        InputStream inputStream = null;
+        HttpURLConnection urlConnection = null;
+        try {
+            URL url = new URL(strUrl);
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.connect();
+            inputStream = urlConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            StringBuffer stringBuffer = new StringBuffer();
+
+            String line = "";
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuffer.append(line);
+            }
+            data = stringBuffer.toString();
+            bufferedReader.close();
+        } catch (Exception e) {
+            Log.d("Exception while downloading url", e.toString());
+        } finally {
+            inputStream.close();
+            urlConnection.disconnect();
+        }
+
+        return data;
+    }
+
+    private class DownloadTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... url) {
+            String data = "";
+            try {
+                data = downloadUrl(url[0]);
+            } catch (IOException e) {
+                Log.d("Background Task", e.toString());
+            }
+            return data;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            ParserTask parserTask = new ParserTask();
+
+            parserTask.execute(result);
+        }
+    }
+
+    private class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String, String>>>> {
+        @Override
+        protected List<List<HashMap<String, String>>> doInBackground(String... jsonData) {
+
+            JSONObject jsonObject;
+            List<List<HashMap<String, String>>> routes = null;
+
+            return routes;
+        }
+    }
+
 
     /**
      * Manipulates the map once available.
