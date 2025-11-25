@@ -103,5 +103,5 @@ public class DirectionsJSONParser {
         return poly;
     }
 
-    
+
 }
