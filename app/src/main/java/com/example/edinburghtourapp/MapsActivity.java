@@ -3,6 +3,7 @@ package com.example.edinburghtourapp;
 import androidx.fragment.app.FragmentActivity;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.edinburghtourapp.databinding.ActivityMapsBinding;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.json.JSONObject;
 
@@ -133,7 +135,44 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             JSONObject jsonObject;
             List<List<HashMap<String, String>>> routes = null;
 
+            try {
+                jsonObject = new JSONObject(jsonData[0]);
+                DirectionsJSONParser parser = new DirectionsJSONParser();
+
+                routes = parser.parse(jsonObject);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             return routes;
+        }
+
+        @Override
+        protected void onPostExecute(List<List<HashMap<String, String>>> result) {
+            ArrayList<LatLng> points = null;
+            PolylineOptions polylineOptions = null;
+
+            for (int index = 0; index < result.size(); index++) {
+                points = new ArrayList<LatLng>();
+                polylineOptions = new PolylineOptions();
+
+                List<HashMap<String, String>> path = result.get(index);
+
+                for (int j = 0; j < path.size(); j++) {
+                    HashMap<String, String> point = path.get(j);
+
+                    double lat = Double.parseDouble(point.get("lat"));
+                    double lng = Double.parseDouble(point.get("lng"));
+                    LatLng position = new LatLng(lat, lng);
+
+                    points.add(position);
+                }
+
+                polylineOptions.addAll(points);
+                polylineOptions.width(12);
+                polylineOptions.color(Color.RED);
+            }
+            mMap.addPolyline(polylineOptions);
         }
     }
 
