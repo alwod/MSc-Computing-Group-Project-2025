@@ -49,6 +49,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+
+
     } // End of onCreate method
 
     private String getDirectionsUrl(LatLng origin, LatLng destination) {
@@ -143,9 +145,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         protected void onPostExecute(List<List<HashMap<String, String>>> result) {
             ArrayList<LatLng> points = new ArrayList<>();
-            PolylineOptions lineOptions = new PolylineOptions();
 
             for (int i = 0; i < result.size(); i++) {
+
+                points.clear();
+                PolylineOptions lineOptions = new PolylineOptions();
 
                 List<HashMap<String, String>> path = result.get(i);
 
@@ -159,14 +163,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     points.add(position);
                 }
 
+                lineOptions.addAll(points);
+                lineOptions.width(12);
+                lineOptions.color(Color.RED);
+
+                // Drawing polyline in the Google Map for the i-th route
+                mMap.addPolyline(lineOptions);
+
+
             }
-
-            lineOptions.addAll(points);
-            lineOptions.width(12);
-            lineOptions.color(Color.RED);
-
-            // Drawing polyline in the Google Map for the entire route
-            mMap.addPolyline(lineOptions);
         }
     } // End of ParserTask class
 
@@ -189,44 +194,53 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     public void handleMapClicking() {
+
+        //mMap.setMyLocationEnabled(true);
+
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(@NonNull LatLng latLng) {
-
-                // If there are already 2 markers on the map, clear the map.
-                if (markerPoints.size() > 1) {
-                    markerPoints.clear();
-                    mMap.clear();
+                if (markerPoints.size() >= 10) {
+                    return;
                 }
 
-                // Add the marker, based on where you clicked
                 markerPoints.add(latLng);
-
                 MarkerOptions options = new MarkerOptions();
                 options.position(latLng);
 
-                // Starting marker will be green, the destination marker will be red.
                 if (markerPoints.size() == 1) {
                     options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
                 } else if (markerPoints.size() == 2) {
                     options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                } else {
+                    options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
                 }
-
                 mMap.addMarker(options);
 
-                // Make sure the marker's locations are captured
                 if (markerPoints.size() >= 2) {
-                    LatLng origin = (LatLng) markerPoints.get(0);
-                    LatLng dest = (LatLng) markerPoints.get(1);
-
+                    LatLng origin = markerPoints.get(0);
+                    LatLng dest = markerPoints.get(1);
                     String url = getDirectionsUrl(origin, dest);
-
                     DownloadTask downloadTask = new DownloadTask();
-
                     downloadTask.execute(url);
                 }
             }
         });
+
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(@NonNull LatLng latLng) {
+                if (markerPoints.size() >= 2) {
+                    LatLng origin = markerPoints.get(0);
+                    LatLng dest = markerPoints.get(1);
+                    String url = getDirectionsUrl(origin, dest);
+                    DownloadTask downloadTask = new DownloadTask();
+                    downloadTask.execute(url);
+                }
+            }
+        });
+
+
     } // end of handleMapClicking method
 
 } // End of class
