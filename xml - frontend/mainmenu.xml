@@ -1,0 +1,406 @@
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/android_com"
+  android:layout_width="412dp"
+  android:layout_height="917dp"
+  android:clipToOutline="true"
+  android:background="#EAF4F4"
+ />
+
+ <!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/vector"
+  android:layout_width="0dp"
+  android:layout_height="59dp"
+  android:layout_alignParentLeft="true"
+  android:layout_alignParentRight="true"
+  android:layout_centerVertical="true"
+  android:background="#0065BD"
+ />
+
+ <!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/edinburgh_t"
+  android:layout_width="403dp"
+  android:layout_height="403dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="4dp"
+  android:layout_alignParentTop="true"
+  android:background="@drawable/edinburgh_t"
+ />
+  
+<!-- drawable/edinburgh_t.xml -->
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:width="403dp"
+  android:height="403dp"
+  android:viewportWidth="403"
+  android:viewportHeight="403"
+ >
+<group>
+<clip-path
+  android:pathData="M0 0H403V403H0V0Z"
+/>
+</group>
+</vector>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<TextView
+  android:id="@+id/select_your"
+  android:layout_width="283dp"
+  android:layout_height="78dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="64dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="290dp"
+  android:text="@string/select_your"
+  android:textAppearance="@style/select_your"
+  android:gravity="center_horizontal|top"
+ />
+<!--
+  Font family: Inknut Antiqua
+  Line height: 72sp
+  -->
+  
+<!-- styles.xml -->
+<style name="select_your">
+<item name="android:textSize">28sp</item>
+<item name="android:textColor">#0065BD</item>
+</style>
+  
+<!-- strings.xml -->
+<string name="select_your">
+  Select Your Tour
+</string>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/rectangle_1"
+  android:layout_width="301dp"
+  android:layout_height="54dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="55dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="403dp"
+  android:background="@drawable/rectangle_1"
+ />
+  
+<!-- drawable/rectangle_1.xml -->
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:width="301dp"
+  android:height="54dp"
+  android:viewportWidth="301"
+  android:viewportHeight="54"
+ >
+<group>
+<clip-path
+  android:pathData="M27 0H274C288.912 0 301 12.0883 301 27C301 41.9117 288.912 54 274 54H27C12.0883 54 0 41.9117 0 27C0 12.0883 12.0883 0 27 0Z"
+/>
+<path
+  android:pathData="M0 0V54H301V0"
+  android:fillColor="#CAE9FF"
+/>
+<path
+  android:pathData="M27 0H274C288.912 0 301 12.0883 301 27C301 41.9117 288.912 54 274 54H27C12.0883 54 0 41.9117 0 27C0 12.0883 12.0883 0 27 0Z"
+  android:strokeWidth="2"
+  android:strokeColor="#3D5A80"
+/>
+</group>
+</vector>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<TextView
+  android:id="@+id/bites_and_p"
+  android:layout_width="179dp"
+  android:layout_height="36dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="116dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="412dp"
+  android:text="@string/bites_and_p"
+  android:textAppearance="@style/bites_and_p"
+  android:gravity="center_horizontal|top"
+ />
+<!--
+  Font family: Hanken Grotesk
+  Line height: 36sp
+  -->
+  
+<!-- styles.xml -->
+<style name="bites_and_p">
+<item name="android:textSize">28sp</item>
+<item name="android:textColor">#000000</item>
+</style>
+  
+<!-- strings.xml -->
+<string name="bites_and_p">
+  Bites and Pints
+</string>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/rectangle_2"
+  android:layout_width="301dp"
+  android:layout_height="54dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="55dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="486dp"
+  android:background="@drawable/rectangle_2"
+ />
+  
+<!-- drawable/rectangle_2.xml -->
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:width="301dp"
+  android:height="54dp"
+  android:viewportWidth="301"
+  android:viewportHeight="54"
+ >
+<group>
+<clip-path
+  android:pathData="M27 0H274C288.912 0 301 12.0883 301 27C301 41.9117 288.912 54 274 54H27C12.0883 54 0 41.9117 0 27C0 12.0883 12.0883 0 27 0Z"
+/>
+<path
+  android:pathData="M0 0V54H301V0"
+  android:fillColor="#CAE9FF"
+/>
+<path
+  android:pathData="M27 0H274C288.912 0 301 12.0883 301 27C301 41.9117 288.912 54 274 54H27C12.0883 54 0 41.9117 0 27C0 12.0883 12.0883 0 27 0Z"
+  android:strokeWidth="2"
+  android:strokeColor="#3D5A80"
+/>
+</group>
+</vector>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<TextView
+  android:id="@+id/bookshops"
+  android:layout_width="138dp"
+  android:layout_height="36dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="137dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="495dp"
+  android:text="@string/bookshops"
+  android:textAppearance="@style/bookshops"
+  android:gravity="center_horizontal|top"
+ />
+<!--
+  Font family: Hanken Grotesk
+  Line height: 36sp
+  -->
+  
+<!-- styles.xml -->
+<style name="bookshops">
+<item name="android:textSize">28sp</item>
+<item name="android:textColor">#000000</item>
+</style>
+  
+<!-- strings.xml -->
+<string name="bookshops">
+  Bookshops
+</string>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/rectangle_3"
+  android:layout_width="301dp"
+  android:layout_height="54dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="54dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="569dp"
+  android:background="@drawable/rectangle_3"
+ />
+  
+<!-- drawable/rectangle_3.xml -->
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:width="301dp"
+  android:height="54dp"
+  android:viewportWidth="301"
+  android:viewportHeight="54"
+ >
+<group>
+<clip-path
+  android:pathData="M27 0H274C288.912 0 301 12.0883 301 27C301 41.9117 288.912 54 274 54H27C12.0883 54 0 41.9117 0 27C0 12.0883 12.0883 0 27 0Z"
+/>
+<path
+  android:pathData="M0 0V54H301V0"
+  android:fillColor="#CAE9FF"
+/>
+<path
+  android:pathData="M27 0H274C288.912 0 301 12.0883 301 27C301 41.9117 288.912 54 274 54H27C12.0883 54 0 41.9117 0 27C0 12.0883 12.0883 0 27 0Z"
+  android:strokeWidth="2"
+  android:strokeColor="#3D5A80"
+/>
+</group>
+</vector>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<TextView
+  android:id="@+id/cafes"
+  android:layout_width="71dp"
+  android:layout_height="36dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="169dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="578dp"
+  android:text="@string/cafes"
+  android:textAppearance="@style/cafes"
+  android:gravity="center_horizontal|top"
+ />
+<!--
+  Font family: Hanken Grotesk
+  Line height: 36sp
+  -->
+  
+<!-- styles.xml -->
+<style name="cafes">
+<item name="android:textSize">28sp</item>
+<item name="android:textColor">#000000</item>
+</style>
+  
+<!-- strings.xml -->
+<string name="cafes">
+  Cafes
+</string>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/rectangle_4"
+  android:layout_width="301dp"
+  android:layout_height="54dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="55dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="652dp"
+  android:background="@drawable/rectangle_4"
+ />
+  
+<!-- drawable/rectangle_4.xml -->
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:width="301dp"
+  android:height="54dp"
+  android:viewportWidth="301"
+  android:viewportHeight="54"
+ >
+<group>
+<clip-path
+  android:pathData="M27 0H274C288.912 0 301 12.0883 301 27C301 41.9117 288.912 54 274 54H27C12.0883 54 0 41.9117 0 27C0 12.0883 12.0883 0 27 0Z"
+/>
+<path
+  android:pathData="M0 0V54H301V0"
+  android:fillColor="#CAE9FF"
+/>
+<path
+  android:pathData="M27 0H274C288.912 0 301 12.0883 301 27C301 41.9117 288.912 54 274 54H27C12.0883 54 0 41.9117 0 27C0 12.0883 12.0883 0 27 0Z"
+  android:strokeWidth="2"
+  android:strokeColor="#3D5A80"
+/>
+</group>
+</vector>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<TextView
+  android:id="@+id/historical_"
+  android:layout_width="183dp"
+  android:layout_height="36dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="113dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="661dp"
+  android:text="@string/historical_"
+  android:textAppearance="@style/historical_"
+  android:gravity="center_horizontal|top"
+ />
+<!--
+  Font family: Hanken Grotesk
+  Line height: 36sp
+  -->
+  
+<!-- styles.xml -->
+<style name="historical_">
+<item name="android:textSize">28sp</item>
+<item name="android:textColor">#000000</item>
+</style>
+  
+<!-- strings.xml -->
+<string name="historical_">
+  Historical Sites
+</string>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/rectangle_5"
+  android:layout_width="301dp"
+  android:layout_height="54dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="55dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="735dp"
+  android:background="@drawable/rectangle_5"
+ />
+  
+<!-- drawable/rectangle_5.xml -->
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:width="301dp"
+  android:height="54dp"
+  android:viewportWidth="301"
+  android:viewportHeight="54"
+ >
+<group>
+<clip-path
+  android:pathData="M27 0H274C288.912 0 301 12.0883 301 27C301 41.9117 288.912 54 274 54H27C12.0883 54 0 41.9117 0 27C0 12.0883 12.0883 0 27 0Z"
+/>
+<path
+  android:pathData="M0 0V54H301V0"
+  android:fillColor="#CAE9FF"
+/>
+<path
+  android:pathData="M27 0H274C288.912 0 301 12.0883 301 27C301 41.9117 288.912 54 274 54H27C12.0883 54 0 41.9117 0 27C0 12.0883 12.0883 0 27 0Z"
+  android:strokeWidth="2"
+  android:strokeColor="#3D5A80"
+/>
+</group>
+</vector>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<TextView
+  android:id="@+id/local_busin"
+  android:layout_width="208dp"
+  android:layout_height="36dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="101dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="744dp"
+  android:text="@string/local_busin"
+  android:textAppearance="@style/local_busin"
+  android:gravity="center_horizontal|top"
+ />
+<!--
+  Font family: Hanken Grotesk
+  Line height: 36sp
+  -->
+  
+<!-- styles.xml -->
+<style name="local_busin">
+<item name="android:textSize">28sp</item>
+<item name="android:textColor">#000000</item>
+</style>
+  
+<!-- strings.xml -->
+<string name="local_busin">
+  Local Businesses
+</string>

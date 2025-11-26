@@ -1,0 +1,209 @@
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/android_com"
+  android:layout_width="412dp"
+  android:layout_height="917dp"
+  android:clipToOutline="true"
+  android:background="#EAF4F4"
+ />
+
+ <!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/edinburgh_t"
+  android:layout_width="209dp"
+  android:layout_height="209dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="-3dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="-36dp"
+  android:background="@drawable/edinburgh_t"
+ />
+  
+<!-- drawable/edinburgh_t.xml -->
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:width="209dp"
+  android:height="209dp"
+  android:viewportWidth="209"
+  android:viewportHeight="209"
+ >
+<group>
+<clip-path
+  android:pathData="M0 0H209V209H0V0Z"
+/>
+</group>
+</vector>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/vector"
+  android:layout_width="0dp"
+  android:layout_height="59dp"
+  android:layout_alignParentLeft="true"
+  android:layout_alignParentRight="true"
+  android:layout_centerVertical="true"
+  android:background="#0065BD"
+ />
+
+ <!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<TextView
+  android:id="@+id/your_number"
+  android:layout_width="319dp"
+  android:layout_height="138dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="46dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="173dp"
+  android:text="@string/your_number"
+  android:textAppearance="@style/your_number"
+  android:gravity="center_horizontal|top"
+ />
+<!--
+  Font family: Inknut Antiqua
+  Line height: 72sp
+  -->
+  
+<!-- styles.xml -->
+<style name="your_number">
+<item name="android:textSize">28sp</item>
+<item name="android:textColor">#0065BD</item>
+</style>
+  
+<!-- strings.xml -->
+<string name="your_number">
+  Your [numbered] stop is [stop name]!
+</string>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/rectangle_7"
+  android:layout_width="330dp"
+  android:layout_height="233dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="41dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="394dp"
+  android:background="@drawable/rectangle_7"
+ />
+  
+<!-- drawable/rectangle_7.xml -->
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:width="330dp"
+  android:height="233dp"
+  android:viewportWidth="330"
+  android:viewportHeight="233"
+ >
+<group>
+<clip-path
+  android:pathData="M10 0H320C325.523 0 330 4.47715 330 10V223C330 228.523 325.523 233 320 233H10C4.47715 233 0 228.523 0 223V10C0 4.47715 4.47715 0 10 0Z"
+/>
+<path
+  android:pathData="M0 0V233H330V0"
+  android:fillColor="#E03D5A80"
+/>
+<path
+  android:pathData="M10 0H320C325.523 0 330 4.47715 330 10V223C330 228.523 325.523 233 320 233H10C4.47715 233 0 228.523 0 223V10C0 4.47715 4.47715 0 10 0Z"
+  android:strokeWidth="2"
+  android:strokeColor="#0065BD"
+/>
+</group>
+</vector>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<TextView
+  android:id="@+id/insert_fun_"
+  android:layout_width="300dp"
+  android:layout_height="112dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="56dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="455dp"
+  android:text="@string/insert_fun_"
+  android:textAppearance="@style/insert_fun_"
+  android:gravity="center_horizontal|top"
+ />
+<!--
+  Font family: Hanken Grotesk
+  Line height: 36sp
+  -->
+  
+<!-- styles.xml -->
+<style name="insert_fun_">
+<item name="android:textSize">28sp</item>
+<item name="android:textColor">#FFFFFF</item>
+</style>
+  
+<!-- strings.xml -->
+<string name="insert_fun_">
+  Insert fun fact of the tour stop here on the start page of each tour. 
+</string>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/rectangle_6"
+  android:layout_width="201dp"
+  android:layout_height="68dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="105dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="735dp"
+  android:background="@drawable/rectangle_6"
+ />
+  
+<!-- drawable/rectangle_6.xml -->
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:width="201dp"
+  android:height="68dp"
+  android:viewportWidth="201"
+  android:viewportHeight="68"
+ >
+<group>
+<clip-path
+  android:pathData="M34 0H167C185.778 0 201 15.2223 201 34C201 52.7777 185.778 68 167 68H34C15.2223 68 0 52.7777 0 34C0 15.2223 15.2223 0 34 0Z"
+/>
+<path
+  android:pathData="M0 0V68H201V0"
+  android:fillColor="#CAE9FF"
+/>
+<path
+  android:pathData="M34 0H167C185.778 0 201 15.2223 201 34C201 52.7777 185.778 68 167 68H34C15.2223 68 0 52.7777 0 34C0 15.2223 15.2223 0 34 0Z"
+  android:strokeWidth="2"
+  android:strokeColor="#3D5A80"
+/>
+</group>
+</vector>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<TextView
+  android:id="@+id/start"
+  android:layout_width="60dp"
+  android:layout_height="36dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="176dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="751dp"
+  android:text="@string/start"
+  android:textAppearance="@style/start"
+  android:gravity="center_horizontal|top"
+ />
+<!--
+  Font family: Hanken Grotesk
+  Line height: 36sp
+  -->
+  
+<!-- styles.xml -->
+<style name="start">
+<item name="android:textSize">28sp</item>
+<item name="android:textColor">#000000</item>
+</style>
+  
+<!-- strings.xml -->
+<string name="start">
+  Start
+</string>

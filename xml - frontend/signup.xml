@@ -1,0 +1,461 @@
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/android_com"
+  android:layout_width="412dp"
+  android:layout_height="917dp"
+  android:clipToOutline="true"
+  android:background="#EAF4F4"
+ />
+
+ <!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/edinburgh_t"
+  android:layout_width="234dp"
+  android:layout_height="234dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="89dp"
+  android:layout_alignParentTop="true"
+  android:background="@drawable/edinburgh_t"
+ />
+  
+<!-- drawable/edinburgh_t.xml -->
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:width="234dp"
+  android:height="234dp"
+  android:viewportWidth="234"
+  android:viewportHeight="234"
+ >
+<group>
+<clip-path
+  android:pathData="M0 0H234V234H0V0Z"
+/>
+</group>
+</vector>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<TextView
+  android:id="@+id/create_your"
+  android:layout_width="361dp"
+  android:layout_height="72dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="25dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="186dp"
+  android:text="@string/create_your"
+  android:textAppearance="@style/create_your"
+  android:gravity="center_horizontal|top"
+ />
+<!--
+  Font family: Inknut Antiqua
+  Line height: 72sp
+  -->
+  
+<!-- styles.xml -->
+<style name="create_your">
+<item name="android:textSize">28sp</item>
+<item name="android:textColor">#0065BD</item>
+</style>
+  
+<!-- strings.xml -->
+<string name="create_your">
+  Create your account
+</string>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<TextView
+  android:id="@+id/first_name"
+  android:layout_width="228dp"
+  android:layout_height="28dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="25dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="290dp"
+  android:text="@string/first_name"
+  android:textAppearance="@style/first_name"
+  android:gravity="top"
+ />
+<!--
+  Font family: Hanken Grotesk
+  Line height: 29sp
+  -->
+  
+<!-- styles.xml -->
+<style name="first_name">
+<item name="android:textSize">22sp</item>
+<item name="android:textColor">#000000</item>
+</style>
+  
+<!-- strings.xml -->
+<string name="first_name">
+  First Name
+</string>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/rectangle_1"
+  android:layout_width="267dp"
+  android:layout_height="47dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="25dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="318dp"
+  android:background="@drawable/rectangle_1"
+ />
+  
+<!-- drawable/rectangle_1.xml -->
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:width="267dp"
+  android:height="47dp"
+  android:viewportWidth="267"
+  android:viewportHeight="47"
+ >
+<group>
+<clip-path
+  android:pathData="M0 0H267V47H0V0Z"
+/>
+<path
+  android:pathData="M0 0V47H267V0"
+  android:fillColor="#D9D8D5"
+/>
+<path
+  android:pathData="M0 0H267V47H0V0Z"
+  android:strokeWidth="2"
+  android:strokeColor="#000000"
+/>
+</group>
+</vector>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<TextView
+  android:id="@+id/last_name"
+  android:layout_width="228dp"
+  android:layout_height="28dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="25dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="385dp"
+  android:text="@string/last_name"
+  android:textAppearance="@style/last_name"
+  android:gravity="top"
+ />
+<!--
+  Font family: Hanken Grotesk
+  Line height: 29sp
+  -->
+  
+<!-- styles.xml -->
+<style name="last_name">
+<item name="android:textSize">22sp</item>
+<item name="android:textColor">#000000</item>
+</style>
+  
+<!-- strings.xml -->
+<string name="last_name">
+  Last Name
+</string>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/rectangle_1"
+  android:layout_width="267dp"
+  android:layout_height="47dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="25dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="413dp"
+  android:background="@drawable/rectangle_1"
+ />
+  
+<!-- drawable/rectangle_1.xml -->
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:width="267dp"
+  android:height="47dp"
+  android:viewportWidth="267"
+  android:viewportHeight="47"
+ >
+<group>
+<clip-path
+  android:pathData="M0 0H267V47H0V0Z"
+/>
+<path
+  android:pathData="M0 0V47H267V0"
+  android:fillColor="#D9D8D5"
+/>
+<path
+  android:pathData="M0 0H267V47H0V0Z"
+  android:strokeWidth="2"
+  android:strokeColor="#000000"
+/>
+</group>
+</vector>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<TextView
+  android:id="@+id/email"
+  android:layout_width="228dp"
+  android:layout_height="28dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="25dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="480dp"
+  android:text="@string/email"
+  android:textAppearance="@style/email"
+  android:gravity="top"
+ />
+<!--
+  Font family: Hanken Grotesk
+  Line height: 29sp
+  -->
+  
+<!-- styles.xml -->
+<style name="email">
+<item name="android:textSize">22sp</item>
+<item name="android:textColor">#000000</item>
+</style>
+  
+<!-- strings.xml -->
+<string name="email">
+  Email
+</string>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/rectangle_1"
+  android:layout_width="267dp"
+  android:layout_height="47dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="25dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="508dp"
+  android:background="@drawable/rectangle_1"
+ />
+  
+<!-- drawable/rectangle_1.xml -->
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:width="267dp"
+  android:height="47dp"
+  android:viewportWidth="267"
+  android:viewportHeight="47"
+ >
+<group>
+<clip-path
+  android:pathData="M0 0H267V47H0V0Z"
+/>
+<path
+  android:pathData="M0 0V47H267V0"
+  android:fillColor="#D9D8D5"
+/>
+<path
+  android:pathData="M0 0H267V47H0V0Z"
+  android:strokeWidth="2"
+  android:strokeColor="#000000"
+/>
+</group>
+</vector>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<TextView
+  android:id="@+id/password"
+  android:layout_width="228dp"
+  android:layout_height="28dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="25dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="575dp"
+  android:text="@string/password"
+  android:textAppearance="@style/password"
+  android:gravity="top"
+ />
+<!--
+  Font family: Hanken Grotesk
+  Line height: 29sp
+  -->
+  
+<!-- styles.xml -->
+<style name="password">
+<item name="android:textSize">22sp</item>
+<item name="android:textColor">#000000</item>
+</style>
+  
+<!-- strings.xml -->
+<string name="password">
+  Password
+</string>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/rectangle_1"
+  android:layout_width="267dp"
+  android:layout_height="47dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="25dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="603dp"
+  android:background="@drawable/rectangle_1"
+ />
+  
+<!-- drawable/rectangle_1.xml -->
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:width="267dp"
+  android:height="47dp"
+  android:viewportWidth="267"
+  android:viewportHeight="47"
+ >
+<group>
+<clip-path
+  android:pathData="M0 0H267V47H0V0Z"
+/>
+<path
+  android:pathData="M0 0V47H267V0"
+  android:fillColor="#D9D8D5"
+/>
+<path
+  android:pathData="M0 0H267V47H0V0Z"
+  android:strokeWidth="2"
+  android:strokeColor="#000000"
+/>
+</group>
+</vector>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<TextView
+  android:id="@+id/confirm_pas"
+  android:layout_width="228dp"
+  android:layout_height="28dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="25dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="682dp"
+  android:text="@string/confirm_pas"
+  android:textAppearance="@style/confirm_pas"
+  android:gravity="top"
+ />
+<!--
+  Font family: Hanken Grotesk
+  Line height: 29sp
+  -->
+  
+<!-- styles.xml -->
+<style name="confirm_pas">
+<item name="android:textSize">22sp</item>
+<item name="android:textColor">#000000</item>
+</style>
+  
+<!-- strings.xml -->
+<string name="confirm_pas">
+  Confirm Password
+</string>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/rectangle_1"
+  android:layout_width="267dp"
+  android:layout_height="47dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="25dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="710dp"
+  android:background="@drawable/rectangle_1"
+ />
+  
+<!-- drawable/rectangle_1.xml -->
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:width="267dp"
+  android:height="47dp"
+  android:viewportWidth="267"
+  android:viewportHeight="47"
+ >
+<group>
+<clip-path
+  android:pathData="M0 0H267V47H0V0Z"
+/>
+<path
+  android:pathData="M0 0V47H267V0"
+  android:fillColor="#D9D8D5"
+/>
+<path
+  android:pathData="M0 0H267V47H0V0Z"
+  android:strokeWidth="2"
+  android:strokeColor="#000000"
+/>
+</group>
+</vector>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/rectangle_1"
+  android:layout_width="145dp"
+  android:layout_height="64dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="25dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="789dp"
+  android:background="@drawable/rectangle_1"
+ />
+  
+<!-- drawable/rectangle_1.xml -->
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:width="145dp"
+  android:height="64dp"
+  android:viewportWidth="145"
+  android:viewportHeight="64"
+ >
+<group>
+<clip-path
+  android:pathData="M32 0H113C130.673 0 145 14.3269 145 32C145 49.6731 130.673 64 113 64H32C14.3269 64 0 49.6731 0 32C0 14.3269 14.3269 0 32 0Z"
+/>
+<path
+  android:pathData="M0 0V64H145V0"
+  android:fillColor="#CAE9FF"
+/>
+<path
+  android:pathData="M32 0H113C130.673 0 145 14.3269 145 32C145 49.6731 130.673 64 113 64H32C14.3269 64 0 49.6731 0 32C0 14.3269 14.3269 0 32 0Z"
+  android:strokeWidth="2"
+  android:strokeColor="#3D5A80"
+/>
+</group>
+</vector>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<TextView
+  android:id="@+id/sign_up"
+  android:layout_width="93dp"
+  android:layout_height="36dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="51dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="803dp"
+  android:text="@string/sign_up"
+  android:textAppearance="@style/sign_up"
+  android:gravity="center_horizontal|top"
+ />
+<!--
+  Font family: Hanken Grotesk
+  Line height: 36sp
+  -->
+  
+<!-- styles.xml -->
+<style name="sign_up">
+<item name="android:textSize">28sp</item>
+<item name="android:textColor">#000000</item>
+</style>
+  
+<!-- strings.xml -->
+<string name="sign_up">
+  Sign Up
+</string>

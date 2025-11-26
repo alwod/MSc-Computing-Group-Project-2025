@@ -1,0 +1,81 @@
+<!--This is the layout where the maps would live on-->
+<!--The save icon should redirect to the login page if the user is not logged in-->
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/android_com"
+  android:layout_width="412dp"
+  android:layout_height="917dp"
+  android:clipToOutline="true"
+  android:background="#EAF4F4"
+ />
+
+ <!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/edinburgh_t"
+  android:layout_width="0dp"
+  android:layout_height="234dp"
+  android:layout_alignParentLeft="true"
+  android:layout_alignParentRight="true"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="-53dp"
+  android:background="@drawable/edinburgh_t"
+ />
+  
+<!-- drawable/edinburgh_t.xml -->
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:width="234dp"
+  android:height="234dp"
+  android:viewportWidth="234"
+  android:viewportHeight="234"
+ >
+<group>
+<clip-path
+  android:pathData="M0 0H234V234H0V0Z"
+/>
+</group>
+</vector>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/vector"
+  android:layout_width="0dp"
+  android:layout_height="57dp"
+  android:layout_alignParentLeft="true"
+  android:layout_alignParentRight="true"
+  android:layout_centerVertical="true"
+  android:background="#0065BD"
+ />
+
+ <!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<TextView
+  android:id="@+id/you_need_an"
+  android:layout_width="319dp"
+  android:layout_height="26dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="68dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="844dp"
+  android:text="@string/you_need_an"
+  android:textAppearance="@style/you_need_an"
+  android:gravity="top"
+ />
+<!--
+  Font family: Hanken Grotesk
+  Line height: 26sp
+  (identical to box height)
+  -->
+  
+<!-- styles.xml -->
+<style name="you_need_an">
+<item name="android:textSize">20sp</item>
+<item name="android:textColor">#000000</item>
+</style>
+  
+<!-- strings.xml -->
+<string name="you_need_an">
+  You need an account to save a tour
+</string>
+

@@ -1,0 +1,205 @@
+<!--This feature should show up when a user clicks on the user icon no matter the page they are on.-->
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/android_com"
+  android:layout_width="412dp"
+  android:layout_height="917dp"
+  android:clipToOutline="true"
+  android:background="#EAF4F4"
+ />
+
+ <!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/vector"
+  android:layout_width="0dp"
+  android:layout_height="0dp"
+  android:layout_alignParentLeft="true"
+  android:layout_alignParentRight="true"
+  android:layout_alignParentTop="true"
+  android:layout_alignParentBottom="true"
+  android:background="#0065BD"
+ />
+
+ <!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/android_com"
+  android:layout_width="412dp"
+  android:layout_height="917dp"
+  android:clipToOutline="true"
+  android:background="#EAF4F4"
+ />
+
+ <!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/rectangle_1"
+  android:layout_width="212dp"
+  android:layout_height="63dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="133dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="105dp"
+  android:background="@drawable/rectangle_1"
+ />
+  
+<!-- drawable/rectangle_1.xml -->
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:width="212dp"
+  android:height="63dp"
+  android:viewportWidth="212"
+  android:viewportHeight="63"
+ >
+<group>
+<clip-path
+  android:pathData="M10 0H202C207.523 0 212 4.47715 212 10V53C212 58.5228 207.523 63 202 63H10C4.47715 63 0 58.5228 0 53V10C0 4.47715 4.47715 0 10 0Z"
+/>
+<path
+  android:pathData="M0 0V63H212V0"
+  android:fillColor="#CAE9FF"
+/>
+<path
+  android:pathData="M10 0H202C207.523 0 212 4.47715 212 10V53C212 58.5228 207.523 63 202 63H10C4.47715 63 0 58.5228 0 53V10C0 4.47715 4.47715 0 10 0Z"
+  android:strokeWidth="2"
+  android:strokeColor="#0065BD"
+/>
+</group>
+</vector>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<TextView
+  android:id="@+id/my_account"
+  android:layout_width="219dp"
+  android:layout_height="31dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="129dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="121dp"
+  android:text="@string/my_account"
+  android:textAppearance="@style/my_account"
+  android:gravity="center_horizontal|top"
+ />
+<!--
+  Font family: Hanken Grotesk
+  Line height: 31sp
+  -->
+  
+<!-- styles.xml -->
+<style name="my_account">
+<item name="android:textSize">24sp</item>
+<item name="android:textColor">#000000</item>
+</style>
+  
+<!-- strings.xml -->
+<string name="my_account">
+  My Account
+</string>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<TextView
+  android:id="@+id/tour_menu"
+  android:layout_width="219dp"
+  android:layout_height="31dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="129dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="207dp"
+  android:text="@string/tour_menu"
+  android:textAppearance="@style/tour_menu"
+  android:gravity="center_horizontal|top"
+ />
+<!--
+  Font family: Hanken Grotesk
+  Line height: 31sp
+  -->
+  
+<!-- styles.xml -->
+<style name="tour_menu">
+<item name="android:textSize">24sp</item>
+<item name="android:textColor">#000000</item>
+</style>
+  
+<!-- strings.xml -->
+<string name="tour_menu">
+  Tour Menu
+</string>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/rectangle_1"
+  android:layout_width="212dp"
+  android:layout_height="63dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="133dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="191dp"
+  android:background="@drawable/rectangle_1"
+ />
+  
+<!-- drawable/rectangle_1.xml -->
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:width="212dp"
+  android:height="63dp"
+  android:viewportWidth="212"
+  android:viewportHeight="63"
+ >
+<group>
+<clip-path
+  android:pathData="M10 0H202C207.523 0 212 4.47715 212 10V53C212 58.5228 207.523 63 202 63H10C4.47715 63 0 58.5228 0 53V10C0 4.47715 4.47715 0 10 0Z"
+/>
+<path
+  android:pathData="M0 0V63H212V0"
+  android:fillColor="#CAE9FF"
+/>
+<path
+  android:pathData="M10 0H202C207.523 0 212 4.47715 212 10V53C212 58.5228 207.523 63 202 63H10C4.47715 63 0 58.5228 0 53V10C0 4.47715 4.47715 0 10 0Z"
+  android:strokeWidth="2"
+  android:strokeColor="#0065BD"
+/>
+</group>
+</vector>
+
+<!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<View
+  android:id="@+id/vector"
+  android:layout_width="0dp"
+  android:layout_height="39dp"
+  android:layout_alignParentLeft="true"
+  android:layout_alignParentRight="true"
+  android:layout_centerVertical="true"
+  android:background="#0065BD"
+ />
+
+ <!-- Auto layout, grids, variables, and unit scale are not yet supported -->
+<TextView
+  android:id="@+id/dark_mode"
+  android:layout_width="219dp"
+  android:layout_height="31dp"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="159dp"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="330dp"
+  android:text="@string/dark_mode"
+  android:textAppearance="@style/dark_mode"
+  android:gravity="center_horizontal|top"
+ />
+<!--
+  Font family: Hanken Grotesk
+  Line height: 31sp
+  -->
+  
+<!-- styles.xml -->
+<style name="dark_mode">
+<item name="android:textSize">24sp</item>
+<item name="android:textColor">#000000</item>
+</style>
+  
+<!-- strings.xml -->
+<string name="dark_mode">
+  Dark Mode
+</string>
