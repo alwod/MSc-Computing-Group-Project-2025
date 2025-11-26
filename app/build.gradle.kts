@@ -1,4 +1,7 @@
 import org.jetbrains.kotlin.ir.backend.js.compile
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
@@ -13,6 +16,10 @@ android {
         version = release(36)
     }
 
+    val properties = Properties()
+    properties.load(project.rootProject.file("local.properties").inputStream())
+    val apiKey = properties.getProperty("MAPS_API_KEY")
+
     defaultConfig {
         applicationId = "com.example.edinburghtourapp"
         minSdk = 25
@@ -21,6 +28,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "API_KEY", apiKey)
     }
 
     buildTypes {
@@ -30,6 +39,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "API_KEY", apiKey)
+        }
+        debug {
+            buildConfigField("String", "API_KEY", apiKey)
         }
     }
     compileOptions {
@@ -42,6 +55,7 @@ android {
     buildFeatures {
         compose = true
         viewBinding = true
+        buildConfig = true
     }
 }
 

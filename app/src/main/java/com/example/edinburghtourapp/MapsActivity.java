@@ -2,10 +2,13 @@ package com.example.edinburghtourapp;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
+import androidx.window.core.BuildConfig;
 
 import android.annotation.SuppressLint;
+import android.content.pm.ApplicationInfo;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -24,6 +27,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -74,7 +78,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String sensor = "sensor=true";
         String mode = "mode=driving";
 
-        String key = "key=";
+
+        // Get the API key from local.properties
+        String apiKey = BuildConfig.API_KEY;
+
+        String key = "key=" + apiKey;
+
         // Building the parameters to the web service
         String parameters = str_origin + "&" + str_dest + "&" + sensor + "&" + mode + "&" + key;
 
