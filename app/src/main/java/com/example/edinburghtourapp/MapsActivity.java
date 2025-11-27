@@ -3,7 +3,6 @@ package com.example.edinburghtourapp;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
-import androidx.window.core.BuildConfig;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -222,10 +221,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String sensor = "sensor=true";
         String mode = "mode=walking";
 
-
         // Get the API key from local.properties
-        String apiKey = "";
-        //apiKey = BuildConfig.API_KEY;
+        String apiKey = BuildConfig.MAPS_API_KEY;
 
         String key = "key=" + apiKey;
 
