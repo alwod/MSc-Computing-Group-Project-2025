@@ -1,17 +1,39 @@
 package com.example.edinburghtourapp;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.window.core.BuildConfig;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentSender;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
+import android.provider.Settings;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -21,6 +43,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.edinburghtourapp.databinding.ActivityMapsBinding;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,17 +64,26 @@ import java.util.Properties;
 
 /*
 * Thanks to these sources for making this work:
+* Google Maps:
 * https://www.specbee.com/blogs/android-tutorials-google-map-drawing-routes-between-two-points
 * https://stackoverflow.com/questions/51682775/how-to-draw-route-more-than-two-points-on-google-map-in-android
 * https://www.digitalocean.com/community/tutorials/android-google-map-drawing-route-two-points
 * https://stackoverflow.com/questions/54783076/you-must-use-an-api-key-to-authenticate-each-request-to-google-maps-platform-api
+*
+* Getting user location:
+* https://github.com/Pritish-git/get-Current-Location/blob/main/MainActivity.java
 * */
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    // Variables for Google Maps
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
     ArrayList<LatLng> markerPoints;
+
+    // Variables for getting user location
+    private LocationRequest locationRequest;
+    LatLng userLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +98,120 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        locationRequest = com.google.android.gms.location.LocationRequest.create();
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        locationRequest.setInterval(5000);
+        locationRequest.setFastestInterval(2000);
+
+
+
 
     } // End of onCreate method
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getCurrentLocation();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == 1) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (isGPSEnabled()) {
+                    getCurrentLocation();
+                } else {
+                    turnOnGPS();
+                }
+            }
+        }
+
+    }// end of onRequestPermissionsResult method
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @NonNull Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 2) {
+            if (resultCode == Activity.RESULT_OK) {
+                getCurrentLocation();
+            }
+        }
+    } // End of onActivityResult method
+
+    private void getCurrentLocation() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ActivityCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                if(isGPSEnabled()) {
+                    LocationServices.getFusedLocationProviderClient(MapsActivity.this).requestLocationUpdates(locationRequest, new LocationCallback() {
+                        @Override
+                        public void onLocationResult(@NonNull LocationResult locationResult) {
+                            super.onLocationResult(locationResult);
+
+                            LocationServices.getFusedLocationProviderClient(MapsActivity.this).removeLocationUpdates(this);
+
+                            if (locationResult != null && locationResult.getLocations().size() > 0) {
+                                int index = locationResult.getLocations().size() - 1;
+                                double latitude = locationResult.getLocations().get(index).getLatitude();
+                                double longitude = locationResult.getLocations().get(index).getLongitude();
+                                userLocation = new LatLng(latitude, longitude);
+                            }
+                        }
+                    }, Looper.getMainLooper());
+                } else {
+                    turnOnGPS();
+                }
+            } else {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            }
+        }
+    } // End of getCurrentLocation method
+
+    private void turnOnGPS() {
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(locationRequest);
+
+        builder.setAlwaysShow(true);
+
+        Task<LocationSettingsResponse> result = LocationServices.getSettingsClient(getApplicationContext()).checkLocationSettings(builder.build());
+
+        result.addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
+            @Override
+            public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
+                try {
+                    LocationSettingsResponse response = task.getResult(ApiException.class);
+                    Toast.makeText(MapsActivity.this, "GPS is already turned on", Toast.LENGTH_SHORT).show();
+                } catch (ApiException e) {
+                    switch (e.getStatusCode()) {
+                        case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                            try {
+                                ResolvableApiException resolveApiException = (ResolvableApiException) e;
+                                resolveApiException.startResolutionForResult(MapsActivity.this, 2);
+                            } catch (IntentSender.SendIntentException ex) {
+                                ex.printStackTrace();
+                            }
+                            break;
+                        case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                            break;
+                    }
+                }
+            }
+        });
+    }// End of turnOnGPS method
+
+    private boolean isGPSEnabled() {
+        LocationManager locationManager = null;
+        boolean isEnabled = false;
+
+        if (locationManager == null) {
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        }
+
+        isEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        return isEnabled;
+    }// end of isGPSEnabled method
 
     private String getUrl(LatLng origin, LatLng dest) {
         String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
@@ -76,11 +220,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Sensor enabled
         String sensor = "sensor=true";
-        String mode = "mode=driving";
+        String mode = "mode=walking";
 
 
         // Get the API key from local.properties
-        String apiKey = BuildConfig.API_KEY;
+        String apiKey = "";
+        //apiKey = BuildConfig.API_KEY;
 
         String key = "key=" + apiKey;
 
@@ -94,7 +239,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters;
 
         return url;
-    }
+    } // End of getUrl method
 
     private class FetchUrl extends AsyncTask<String, Void, String> {
 
@@ -124,7 +269,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             parserTask.execute(result);
 
         }
-    }
+    } // End of FetchUrl class
 
     private String downloadUrl(String strUrl) throws IOException {
         String data = "";
@@ -162,7 +307,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             urlConnection.disconnect();
         }
         return data;
-    }
+    } // End of downloadUrl method
 
     private class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String, String>>>> {
 
@@ -233,7 +378,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Log.d("onPostExecute","without Polylines drawn");
             }
         }
-    }
+    } // End of ParserTask class
 
     class DataParser {
 
@@ -321,16 +466,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             return poly;
         }
-    }
+    } // End of DataParser class
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        getCurrentLocation();
+
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
+
+        if (userLocation == null) {
+            userLocation = sydney;
+        }
+
         //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 16));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 16));
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
