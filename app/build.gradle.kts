@@ -1,3 +1,8 @@
+import org.jetbrains.kotlin.ir.backend.js.compile
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -10,6 +15,10 @@ android {
     compileSdk {
         version = release(36)
     }
+
+    val properties = Properties()
+    properties.load(project.rootProject.file("local.properties").inputStream())
+    val apiKey = properties.getProperty("MAPS_API_KEY")
 
     defaultConfig {
         applicationId = "com.example.edinburghtourapp"
@@ -28,6 +37,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            //buildConfigField("String", "API_KEY", apiKey)
+        }
+        debug {
+            //buildConfigField("String", "API_KEY", apiKey)
         }
     }
     compileOptions {
@@ -40,6 +53,7 @@ android {
     buildFeatures {
         compose = true
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -56,6 +70,9 @@ dependencies {
     implementation(libs.play.services.maps)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.material)
+    implementation(libs.androidx.activity)
+    implementation("com.google.android.gms:play-services-location:21.3.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
