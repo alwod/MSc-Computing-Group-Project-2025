@@ -58,6 +58,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
@@ -87,6 +89,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     // Variables for tracking the tour
     private int currentStopID = 0;
     private LatLng currentStopLatLng;
+    private int tourID = 0;
+    private LinkedList<Integer> tour = new LinkedList<Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,6 +157,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.addMarker(options);
 
                 if (markerPoints.size() >= 2) {
+                    // THE IMPORTANT CODE, HERE IS WHERE THE PATH IS CREATED
                     LatLng origin = markerPoints.get(0);
                     LatLng dest = markerPoints.get(1);
 
@@ -165,6 +170,64 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
     } // End of onMapReaady method
+
+    // This function populates the tour collection with the id's of every tour
+    public void initialiseTour() {
+
+    } // End of initialiseTour method
+
+    // Loops through the tour
+    public void loopTour() {
+        // Get the first stop in the tour and remove it from the queue
+        currentStopID = tour.getFirst();
+        tour.removeFirst();
+
+        // Display information about the stop as either a pop-up or a new activity
+        // If doing it as a pop-up, it needs 2 buttons, one to go back to the tour select activity and the other to start the tour
+        // TODO
+
+        // Get the first location's latitude and longitude from the database, using the current stop ID
+        // TODO
+        currentStopLatLng = new LatLng(0, 0);
+
+        // Then get the user's location
+        getCurrentLocation();
+
+        // Add markers on the map
+        // Already two locations
+        if (markerPoints.size() > 1) {
+            markerPoints.clear();
+            mMap.clear();
+        }
+
+        addMarker(userLocation);
+        addMarker(currentStopLatLng);
+
+        // Then create the route
+        String url = getUrl(userLocation, currentStopLatLng);
+        FetchUrl fetchUrl = new FetchUrl();
+
+        fetchUrl.execute(url);
+
+        // If the "Go to next stop" button is pressed, call the function again
+        // TODO
+    } // End of loopTour method
+
+    public void addMarker(LatLng point) {
+        markerPoints.add(point);
+
+        MarkerOptions options = new MarkerOptions();
+
+        options.position(point);
+
+        if (markerPoints.size() == 1) {
+            options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+        } else if (markerPoints.size() == 2) {
+            options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+        }
+
+        mMap.addMarker(options);
+    } // End of addMarker method
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -414,7 +477,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // Adding all the points in the route to LineOptions
                 lineOptions.addAll(points);
                 lineOptions.width(10);
-                lineOptions.color(Color.RED);
+                lineOptions.color(Color.BLUE);
 
                 Log.d("onPostExecute","onPostExecute lineoptions decoded");
 
