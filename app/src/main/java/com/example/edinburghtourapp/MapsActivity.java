@@ -78,11 +78,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     // Variables for Google Maps
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
-    ArrayList<LatLng> markerPoints;
+    private ArrayList<LatLng> markerPoints;
 
     // Variables for getting user location
     private LocationRequest locationRequest;
-    LatLng userLocation;
+    private LatLng userLocation;
+
+    // Variables for tracking the tour
+    private int currentStopID = 0;
+    private LatLng currentStopLatLng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,17 +105,66 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationRequest.setInterval(5000);
         locationRequest.setFastestInterval(2000);
-
-
-
-
     } // End of onCreate method
 
     @Override
     public void onResume() {
         super.onResume();
         getCurrentLocation();
-    }
+    } // End of onResume method
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        getCurrentLocation();
+
+        // Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(-34, 151);
+
+        if (userLocation == null) {
+            userLocation = sydney;
+        }
+
+        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 16));
+
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(@NonNull LatLng point) {
+                // Already two locations
+                if (markerPoints.size() > 1) {
+                    markerPoints.clear();
+                    mMap.clear();
+                }
+
+                markerPoints.add(point);
+
+                MarkerOptions options = new MarkerOptions();
+
+                options.position(point);
+
+                if (markerPoints.size() == 1) {
+                    options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                } else if (markerPoints.size() == 2) {
+                    options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                }
+
+                mMap.addMarker(options);
+
+                if (markerPoints.size() >= 2) {
+                    LatLng origin = markerPoints.get(0);
+                    LatLng dest = markerPoints.get(1);
+
+                    String url = getUrl(origin, dest);
+                    Log.d("onMapClick", url.toString());
+                    FetchUrl fetchUrl = new FetchUrl();
+
+                    fetchUrl.execute(url);
+                }
+            }
+        });
+    } // End of onMapReaady method
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -464,62 +517,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return poly;
         }
     } // End of DataParser class
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        getCurrentLocation();
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-
-        if (userLocation == null) {
-            userLocation = sydney;
-        }
-
-        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 16));
-
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(@NonNull LatLng point) {
-                // Already two locations
-                if (markerPoints.size() > 1) {
-                    markerPoints.clear();
-                    mMap.clear();
-                }
-
-                markerPoints.add(point);
-
-                MarkerOptions options = new MarkerOptions();
-
-                options.position(point);
-
-                if (markerPoints.size() == 1) {
-                    options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-                } else if (markerPoints.size() == 2) {
-                    options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                }
-
-                mMap.addMarker(options);
-
-                if (markerPoints.size() >= 2) {
-                    LatLng origin = markerPoints.get(0);
-                    LatLng dest = markerPoints.get(1);
-
-                    String url = getUrl(origin, dest);
-                    Log.d("onMapClick", url.toString());
-                    FetchUrl fetchUrl = new FetchUrl();
-
-                    fetchUrl.execute(url);
-                }
-            }
-        });
-
-
-    } // End of onMapReaady method
-
-
-
 } // End of class
