@@ -88,9 +88,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     // Variables for tracking the tour
     private int currentStopID = 0;
-    private LatLng currentStopLatLng;
-    private int tourID = 0;
-    private LinkedList<Integer> tour = new LinkedList<Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,95 +108,52 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationRequest.setFastestInterval(2000);
     } // End of onCreate method
 
+    // Main purpose is to constantly update the user's marker
     @Override
     public void onResume() {
         super.onResume();
-        getCurrentLocation();
+
+        //getCurrentLocation();
+        //addMarker(userLocation);
+
+        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 16));
+
     } // End of onResume method
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        getCurrentLocation();
+        userLocation = new LatLng(0, 0);
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
+        loopTour(0, 0);
 
-        if (userLocation == null) {
-            userLocation = sydney;
-        }
-
-        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 16));
 
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(@NonNull LatLng point) {
-                // Already two locations
-                if (markerPoints.size() > 1) {
-                    markerPoints.clear();
-                    mMap.clear();
-                }
-
-                markerPoints.add(point);
-
-                MarkerOptions options = new MarkerOptions();
-
-                options.position(point);
-
-                if (markerPoints.size() == 1) {
-                    options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-                } else if (markerPoints.size() == 2) {
-                    options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                }
-
-                mMap.addMarker(options);
-
-                if (markerPoints.size() >= 2) {
-                    // THE IMPORTANT CODE, HERE IS WHERE THE PATH IS CREATED
-                    LatLng origin = markerPoints.get(0);
-                    LatLng dest = markerPoints.get(1);
-
-                    String url = getUrl(origin, dest);
-                    Log.d("onMapClick", url.toString());
-                    FetchUrl fetchUrl = new FetchUrl();
-
-                    fetchUrl.execute(url);
-                }
-            }
-        });
-    } // End of onMapReaady method
-
-    // This function populates the tour collection with the id's of every tour
-    public void initialiseTour() {
-
-    } // End of initialiseTour method
+    } // End of onMapReady method
 
     // Loops through the tour
-    public void loopTour() {
-        // Get the first stop in the tour and remove it from the queue
-        currentStopID = tour.getFirst();
-        tour.removeFirst();
+    public void loopTour(double lat, double lng) {
+        /*
+        IMPORTANT:
+        I have decided to split this between 2 activities; an Information activity will be made in
+        order to store all of the location stuff. When the 'start journey' button is pressed in
+        Information, it then sends either the LatLng or the ID of the first stop to this class via,
+        an Intent which then gets passed to this method. Might need to rename it.
 
-        // Display information about the stop as either a pop-up or a new activity
-        // If doing it as a pop-up, it needs 2 buttons, one to go back to the tour select activity and the other to start the tour
-        // TODO
+        We also need to setup 3 buttons in this class. Exit, View Info, and Next Stop. If either
+        View Info or Next Stop are pressed, an Intent is sent back to Information. With View Info it
+        sends the ID back so Information knows what to display. WIth Next Stop, it then does the
+        queue freeing process there instead of here. Exit takes the user back to the main page.
+         */
 
-        // Get the first location's latitude and longitude from the database, using the current stop ID
-        // TODO
-        currentStopLatLng = new LatLng(0, 0);
+        // Get the first location's latitude and longitude
+        LatLng currentStopLatLng = new LatLng(lat, lng);
 
         // Then get the user's location
         getCurrentLocation();
 
         // Add markers on the map
-        // Already two locations
-        if (markerPoints.size() > 1) {
-            markerPoints.clear();
-            mMap.clear();
-        }
-
         addMarker(userLocation);
         addMarker(currentStopLatLng);
 
@@ -208,18 +162,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         FetchUrl fetchUrl = new FetchUrl();
 
         fetchUrl.execute(url);
-
-        // If the "Go to next stop" button is pressed, call the function again
-        // TODO
     } // End of loopTour method
 
     public void addMarker(LatLng point) {
-        markerPoints.add(point);
+        // Already two locations
+        if (markerPoints.size() > 1) {
+            markerPoints.set(0, point);
+        } else {
+            markerPoints.add(point);
+        }
 
         MarkerOptions options = new MarkerOptions();
 
         options.position(point);
 
+        // TODO this needs to change
         if (markerPoints.size() == 1) {
             options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
         } else if (markerPoints.size() == 2) {

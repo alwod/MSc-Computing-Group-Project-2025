@@ -1,10 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.fragment.app.FragmentContainerView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MapsActivity"
-    />
+    tools:context=".MapsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="628dp">
+        </fragment>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="101dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/exitMapButton"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:text="EXIT"
+                android:layout_marginLeft="5dp">
+            </Button>
+
+            <Button
+                android:id="@+id/nextStopButton"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:text="NEXT STOP">
+            </Button>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
