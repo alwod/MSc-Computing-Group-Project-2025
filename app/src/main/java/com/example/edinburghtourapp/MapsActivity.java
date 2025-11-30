@@ -98,6 +98,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Initialise markerPoints array list
         markerPoints = new ArrayList<LatLng>();
 
+        // Get tour object from ShowLocationInfoActivity
+        tour = (Tour) getIntent().getSerializableExtra("Tour Object");
+
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -121,6 +124,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 //TODO send the tour object to ShowLocationInfo
+                backToInfoScreen();
             }
         });
 
@@ -130,6 +134,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 tour.removeLocation();
                 //TODO send the tour object to ShowLocationInfo
+                backToInfoScreen();
             }
         });
     } // End of onCreate method
@@ -196,6 +201,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.addMarker(options);
     } // End of addMarker method
+
+    public void backToInfoScreen() {
+        Intent fromMapToInfo = new Intent(this, ShowLocationInfoActivity.class);
+        fromMapToInfo.setAction(Intent.ACTION_SEND);
+        fromMapToInfo.putExtra("TourObject", tour);
+        startActivity(fromMapToInfo);
+    }
 
     // Runs after permissions were requested. If permissions were granted, turn on gps if not already or get user location
     @Override

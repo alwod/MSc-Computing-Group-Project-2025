@@ -1,5 +1,6 @@
 package com.example.edinburghtourapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,10 @@ public class ShowLocationInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Get tour object
+        tour = (Tour) getIntent().getSerializableExtra("Tour Object");
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_show_location_info);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -49,6 +54,8 @@ public class ShowLocationInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO either go back to main menu or close app
+                finish();
+                System.exit(0);
             }
         });
 
@@ -59,12 +66,14 @@ public class ShowLocationInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO send the tour object to MapsActivity
+                goToMap();
             }
         });
 
     } // End of onCreate method
 
-    public void initialiseTour() {
-
+    public void goToMap() {
+        Intent fromInfoToMap = new Intent(this, MapsActivity.class);
+        fromInfoToMap.putExtra("Tour Object", tour);
     }
 } // End of class
