@@ -48,7 +48,7 @@ public class ShowLocationInfoActivity extends AppCompatActivity {
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //TODO either go back to main menu or close app
             }
         });
 
@@ -58,7 +58,7 @@ public class ShowLocationInfoActivity extends AppCompatActivity {
         directionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //TODO send the tour object to MapsActivity
             }
         });
 

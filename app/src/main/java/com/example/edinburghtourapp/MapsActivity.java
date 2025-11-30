@@ -120,7 +120,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         infoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //TODO send the tour object to ShowLocationInfo
             }
         });
 
@@ -129,6 +129,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 tour.removeLocation();
+                //TODO send the tour object to ShowLocationInfo
             }
         });
     } // End of onCreate method
@@ -138,10 +139,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onResume() {
         super.onResume();
 
-        //getCurrentLocation();
-        //addMarker(userLocation);
+        getCurrentLocation();
+        addMarker(userLocation, true);
 
-        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 16));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 16));
 
     } // End of onResume method
 
@@ -165,8 +166,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         getCurrentLocation();
 
         // Add markers on the map
-        addMarker(userLocation);
-        addMarker(destLatLng);
+        addMarker(userLocation, true);
+        addMarker(destLatLng, false);
 
         // Then create the route
         String url = getUrl(userLocation, destLatLng);
@@ -175,7 +176,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fetchUrl.execute(url);
     } // End of loopTour method
 
-    public void addMarker(LatLng point) {
+    public void addMarker(LatLng point, boolean isUser) {
         // Already two locations
         if (markerPoints.size() > 1) {
             markerPoints.set(0, point);
@@ -187,10 +188,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         options.position(point);
 
-        // TODO this needs to change
-        if (markerPoints.size() == 1) {
+        if (isUser) {
             options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-        } else if (markerPoints.size() == 2) {
+        } else {
             options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
         }
 
