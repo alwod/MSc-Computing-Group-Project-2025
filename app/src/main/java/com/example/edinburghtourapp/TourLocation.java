@@ -6,7 +6,9 @@ import java.io.Serializable;
 
 public class TourLocation implements Serializable {
     // Instance variables
+    private int id;
     private String name;
+    private String description;
     private LatLng latLng;
 
     // Constructors
@@ -15,10 +17,10 @@ public class TourLocation implements Serializable {
         String defaultName = "Sydney";
         LatLng defaultCoords = new LatLng(-34, 151);
 
-        setName(defaultName);
-        setLatLng(defaultCoords);
+        new TourLocation(0, defaultName, defaultCoords);
     }
-    public TourLocation(String name, LatLng latLng) {
+    public TourLocation(int id, String name, LatLng latLng) {
+        setId(id);
         setName(name);
         setLatLng(latLng);
     }
@@ -47,6 +49,20 @@ public class TourLocation implements Serializable {
     }
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
     }
     // end of getters and setters
 } // end of class

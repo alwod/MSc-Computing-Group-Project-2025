@@ -21,6 +21,8 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.ApiException;
@@ -87,7 +89,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng userLocation;
 
     // Variables for tracking the tour
-    private int currentStopID = 0;
+    Tour tour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +108,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationRequest.setInterval(5000);
         locationRequest.setFastestInterval(2000);
+
+        // Set up buttons
+        Button infoButton = (Button) findViewById(R.id.infoButton);
+        Button nextStopButton = (Button) findViewById(R.id.nextStopButton);
+
+        // If the info button is pressed, go back to SHowLocationInfo without removing the first location in the queue
+        infoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        // If the next stop button is pressed, go back to ShowLocationInfo; removing the first location from the queue before doing so
+        nextStopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tour.removeLocation();
+            }
+        });
     } // End of onCreate method
 
     // Main purpose is to constantly update the user's marker
@@ -124,41 +146,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        userLocation = new LatLng(0, 0);
+        // This needs to be called to initialise userLocation, otherwise it's null
+        getCurrentLocation();
 
-        loopTour(0, 0);
+        // Get the first-most stop in the tour
+        loopTour(tour.getTourLocations().getFirst().getLatLng());
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 16));
 
     } // End of onMapReady method
 
     // Loops through the tour
-    public void loopTour(double lat, double lng) {
-        /*
-        IMPORTANT:
-        I have decided to split this between 2 activities; an Information activity will be made in
-        order to store all of the location stuff. When the 'start journey' button is pressed in
-        Information, it then sends either the LatLng or the ID of the first stop to this class via,
-        an Intent which then gets passed to this method. Might need to rename it.
-
-        We also need to setup 3 buttons in this class. Exit, View Info, and Next Stop. If either
-        View Info or Next Stop are pressed, an Intent is sent back to Information. With View Info it
-        sends the ID back so Information knows what to display. WIth Next Stop, it then does the
-        queue freeing process there instead of here. Exit takes the user back to the main page.
-         */
-
-        // Get the first location's latitude and longitude
-        LatLng currentStopLatLng = new LatLng(lat, lng);
-
+    public void loopTour(LatLng destLatLng) {
         // Then get the user's location
         getCurrentLocation();
 
         // Add markers on the map
         addMarker(userLocation);
-        addMarker(currentStopLatLng);
+        addMarker(destLatLng);
 
         // Then create the route
-        String url = getUrl(userLocation, currentStopLatLng);
+        String url = getUrl(userLocation, destLatLng);
         FetchUrl fetchUrl = new FetchUrl();
 
         fetchUrl.execute(url);

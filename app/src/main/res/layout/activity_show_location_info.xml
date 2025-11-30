@@ -7,4 +7,36 @@
     android:layout_height="match_parent"
     tools:context=".ShowLocationInfoActivity">
 
+    <TextView
+        android:id="@+id/locationNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name of Location"
+        tools:layout_editor_absoluteX="168dp"
+        tools:layout_editor_absoluteY="99dp" />
+
+    <TextView
+        android:id="@+id/locationDescriptionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description of Location"
+        tools:layout_editor_absoluteX="145dp"
+        tools:layout_editor_absoluteY="198dp" />
+
+    <Button
+        android:id="@+id/menuButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exit"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="550dp" />
+
+
+    <Button
+        android:id="@+id/directionsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Directions"
+        tools:layout_editor_absoluteX="241dp"
+        tools:layout_editor_absoluteY="550dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

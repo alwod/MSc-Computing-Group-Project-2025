@@ -1,12 +1,12 @@
 package com.example.edinburghtourapp;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Tour implements Serializable {
     // Instance variables
     private String tourName;
-    private ArrayList<TourLocation> tourLocations = new ArrayList<TourLocation>();
+    private LinkedList<TourLocation> tourLocations = new LinkedList<TourLocation>();
     Boolean isAccessible = false;
 
     // Constructors
@@ -15,8 +15,12 @@ public class Tour implements Serializable {
         setAccessible(isAccessible);
     }
 
-    public void addTour(TourLocation location) {
-        getTourLocations().add(location);
+    public void addLocation(TourLocation location) {
+        getTourLocations().addFirst(location);
+    }
+
+    public void removeLocation() {
+        getTourLocations().removeFirst();
     }
 
     public String toString() {
@@ -46,11 +50,11 @@ public class Tour implements Serializable {
         return this.isAccessible;
     }
 
-    public ArrayList<TourLocation> getTourLocations() {
+    public LinkedList<TourLocation> getTourLocations() {
         return this.tourLocations;
     }
 
-    public void setTourLocations(ArrayList<TourLocation> tourLocations) {
+    public void setTourLocations(LinkedList<TourLocation> tourLocations) {
         this.tourLocations = tourLocations;
     }
 
