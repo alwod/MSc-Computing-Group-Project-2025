@@ -1,22 +1,32 @@
 package com.example.edinburghtourapp;
 
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+import org.parceler.Parcel;
+
 import java.io.Serializable;
 import java.util.LinkedList;
 
-public class Tour implements Serializable {
+@Parcel
+public class Tour {
     // Instance variables
-    private String tourName;
-    private LinkedList<TourLocation> tourLocations = new LinkedList<TourLocation>();
+    String tourName;
+    LinkedList<TourLocation> tourLocations = new LinkedList<TourLocation>();
     Boolean isAccessible = false;
 
     // Constructors
+    public Tour() {
+
+    }
     public Tour(String tourName, Boolean isAccessible) {
         setTourName(tourName);
         setAccessible(isAccessible);
     }
 
     public void addLocation(TourLocation location) {
-        getTourLocations().addFirst(location);
+        getTourLocations().add(location);
     }
 
     public void removeLocation() {

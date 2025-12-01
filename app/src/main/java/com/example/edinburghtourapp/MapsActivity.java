@@ -19,6 +19,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
+import android.os.Parcelable;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
@@ -50,6 +51,7 @@ import com.google.android.gms.tasks.Task;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcels;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -86,10 +88,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     // Variables for getting user location
     private LocationRequest locationRequest;
-    private LatLng userLocation;
+    private LatLng userLocation = new LatLng(0, 0);
 
     // Variables for tracking the tour
     Tour tour;
+
+    // Napier Merchiston
+    LatLng test1 = new LatLng(55.933144, -3.212863);
+    // Tesco
+    LatLng test2 = new LatLng(55.934010, -3.210572);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +106,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         markerPoints = new ArrayList<LatLng>();
 
         // Get tour object from ShowLocationInfoActivity
-        tour = (Tour) getIntent().getSerializableExtra("Tour Object");
+        Parcelable parcelable = getIntent().getParcelableExtra("Tour_Object");
+        tour = Parcels.unwrap(parcelable);
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -119,6 +127,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Button infoButton = (Button) findViewById(R.id.infoButton);
         Button nextStopButton = (Button) findViewById(R.id.nextStopButton);
 
+
         // If the info button is pressed, go back to SHowLocationInfo without removing the first location in the queue
         infoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,19 +146,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 backToInfoScreen();
             }
         });
+
+
     } // End of onCreate method
-
-    // Main purpose is to constantly update the user's marker
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        getCurrentLocation();
-        addMarker(userLocation, true);
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 16));
-
-    } // End of onResume method
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -158,18 +157,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // This needs to be called to initialise userLocation, otherwise it's null
         getCurrentLocation();
 
+        // Create a marker for the destination
+        addMarker(tour.getTourLocations().getFirst().getLatLng(), false);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(tour.getTourLocations().getFirst().getLatLng(), 16));
+
         // Get the first-most stop in the tour
-        loopTour(tour.getTourLocations().getFirst().getLatLng());
+        //loopTour(tour.getTourLocations().getFirst().getLatLng());
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 16));
+        Button remakeRouteButton = (Button) findViewById(R.id.remakeRouteButton);
 
+        remakeRouteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loopTour(tour.getTourLocations().getFirst().getLatLng());
+            }
+        });
     } // End of onMapReady method
 
     // Loops through the tour
     public void loopTour(LatLng destLatLng) {
-        // Then get the user's location
-        getCurrentLocation();
-
+        mMap.clear();
         // Add markers on the map
         addMarker(userLocation, true);
         addMarker(destLatLng, false);
@@ -177,18 +184,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Then create the route
         String url = getUrl(userLocation, destLatLng);
         FetchUrl fetchUrl = new FetchUrl();
-
         fetchUrl.execute(url);
+
+        // Zoom to user's location
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 16));
     } // End of loopTour method
 
     public void addMarker(LatLng point, boolean isUser) {
-        // Already two locations
-        if (markerPoints.size() > 1) {
-            markerPoints.set(0, point);
-        } else {
-            markerPoints.add(point);
-        }
-
         MarkerOptions options = new MarkerOptions();
 
         options.position(point);
@@ -203,9 +205,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     } // End of addMarker method
 
     public void backToInfoScreen() {
+        Parcelable parcelable = Parcels.wrap(tour);
+
         Intent fromMapToInfo = new Intent(this, ShowLocationInfoActivity.class);
-        fromMapToInfo.setAction(Intent.ACTION_SEND);
-        fromMapToInfo.putExtra("TourObject", tour);
+        fromMapToInfo.putExtra("Tour_Object", parcelable);
+
         startActivity(fromMapToInfo);
     }
 
@@ -253,6 +257,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 double latitude = locationResult.getLocations().get(index).getLatitude();
                                 double longitude = locationResult.getLocations().get(index).getLongitude();
                                 userLocation = new LatLng(latitude, longitude);
+                                System.out.println("----------Got user location!");
+                            }
+                            else {
+                                System.out.println("----------Didnt get user location");
                             }
                         }
                     }, Looper.getMainLooper());

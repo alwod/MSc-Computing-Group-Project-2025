@@ -1,27 +1,36 @@
 package com.example.edinburghtourapp;
 
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import com.google.android.gms.maps.model.LatLng;
+
+import org.parceler.Parcel;
 
 import java.io.Serializable;
 
-public class TourLocation implements Serializable {
+@Parcel
+public class TourLocation {
     // Instance variables
-    private int id;
-    private String name;
-    private String description;
-    private LatLng latLng;
+    int id;
+    String name;
+    String description;
+    LatLng latLng;
 
     // Constructors
     public TourLocation() {
         // Set the default location to sydney in australia, for no real reason other than it's obivously incorrect; and easier to notice
         String defaultName = "Sydney";
+        String defaultDescription = "Default location created";
         LatLng defaultCoords = new LatLng(-34, 151);
 
-        new TourLocation(0, defaultName, defaultCoords);
+        new TourLocation(0, defaultName, defaultDescription, defaultCoords);
     }
-    public TourLocation(int id, String name, LatLng latLng) {
+    public TourLocation(int id, String name, String description, LatLng latLng) {
         setId(id);
         setName(name);
+        setDescription(description);
         setLatLng(latLng);
     }
 

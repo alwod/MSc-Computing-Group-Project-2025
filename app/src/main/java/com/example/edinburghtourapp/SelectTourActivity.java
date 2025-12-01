@@ -16,10 +16,10 @@ import com.google.android.gms.maps.model.LatLng;
 public class SelectTourActivity extends ComponentActivity {
 
     LatLng testLatLng1 = new LatLng(-34, 151);
-    TourLocation testLocation1 = new TourLocation(0, "Test Location 1", testLatLng1);
+    TourLocation testLocation1 = new TourLocation(0, "Test Location 1", "Description", testLatLng1);
 
     LatLng testLatLng2 = new LatLng(-34, 152);
-    TourLocation testLocation2 = new TourLocation(1, "Test Location 2", testLatLng2);
+    TourLocation testLocation2 = new TourLocation(1, "Test Location 2", "Description", testLatLng2);
 
     Tour testTour = new Tour("Test Tour", false);
 

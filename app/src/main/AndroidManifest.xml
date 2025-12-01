@@ -21,7 +21,7 @@
         android:theme="@style/Theme.EdinburghTourApp">
         <activity
             android:name=".ShowLocationInfoActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".SelectTourActivity"
             android:exported="true" />

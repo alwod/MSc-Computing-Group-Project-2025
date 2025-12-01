@@ -2,10 +2,12 @@ package com.example.edinburghtourapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.activity.ComponentActivity;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -14,9 +16,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import org.parceler.Parcels;
+
 import java.util.LinkedList;
 
-public class ShowLocationInfoActivity extends AppCompatActivity {
+public class ShowLocationInfoActivity extends ComponentActivity {
 
     Tour tour;
     TourLocation currentStop;
@@ -28,7 +32,10 @@ public class ShowLocationInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Get tour object
-        tour = (Tour) getIntent().getSerializableExtra("Tour Object");
+        Parcelable parcelable = getIntent().getParcelableExtra("Tour_Object");
+        tour = Parcels.unwrap(parcelable);
+
+        createTestTour();
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_show_location_info);
@@ -73,7 +80,20 @@ public class ShowLocationInfoActivity extends AppCompatActivity {
     } // End of onCreate method
 
     public void goToMap() {
+        Parcelable parcelable = Parcels.wrap(tour);
+
         Intent fromInfoToMap = new Intent(this, MapsActivity.class);
-        fromInfoToMap.putExtra("Tour Object", tour);
+        fromInfoToMap.putExtra("Tour_Object", parcelable);
+
+        startActivity(fromInfoToMap);
+    }
+
+    public void createTestTour() {
+        TourLocation testLocation1 = new TourLocation(0, "Napier Merchiston", "Our Uni", new LatLng(55.933144, -3.212863));
+        TourLocation testLocation2 = new TourLocation(1, "Tesco", "The tesco near the uni", new LatLng(55.934010, -3.210572));
+
+        tour = new Tour("Test Tour", false);
+        tour.addLocation(testLocation1);
+        tour.addLocation(testLocation2);
     }
 } // End of class
