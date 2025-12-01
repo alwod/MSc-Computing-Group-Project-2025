@@ -125,9 +125,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Set up buttons
         Button infoButton = (Button) findViewById(R.id.infoButton);
-        Button nextStopButton = (Button) findViewById(R.id.nextStopButton);
-
-
         // If the info button is pressed, go back to SHowLocationInfo without removing the first location in the queue
         infoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,16 +134,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        // If the next stop button is pressed, go back to ShowLocationInfo; removing the first location from the queue before doing so
-        nextStopButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tour.removeLocation();
-                //TODO send the tour object to ShowLocationInfo
-                backToInfoScreen();
-            }
-        });
-
+        Button nextStopButton = (Button) findViewById(R.id.nextStopButton);
+        if (tour.getTourLocations().size() > 1) {
+            // If the next stop button is pressed, go back to ShowLocationInfo; removing the first location from the queue before doing so
+            nextStopButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tour.removeLocation();
+                    //TODO send the tour object to ShowLocationInfo
+                    backToInfoScreen();
+                }
+            });
+        } else {
+            nextStopButton.setVisibility(View.GONE);
+        }
 
     } // End of onCreate method
 

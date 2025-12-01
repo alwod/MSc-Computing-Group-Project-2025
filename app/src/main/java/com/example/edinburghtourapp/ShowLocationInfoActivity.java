@@ -35,7 +35,9 @@ public class ShowLocationInfoActivity extends ComponentActivity {
         Parcelable parcelable = getIntent().getParcelableExtra("Tour_Object");
         tour = Parcels.unwrap(parcelable);
 
-        createTestTour();
+        if (tour == null) {
+            createTestTour();
+        }
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_show_location_info);
