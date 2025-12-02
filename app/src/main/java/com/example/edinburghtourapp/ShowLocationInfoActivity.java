@@ -68,13 +68,10 @@ public class ShowLocationInfoActivity extends ComponentActivity {
             }
         });
 
-
-
         // If next directions button is pressed
         directionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO send the tour object to MapsActivity
                 goToMap();
             }
         });
