@@ -5,15 +5,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -21,7 +18,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Parcelable;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +25,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
-import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -55,7 +50,6 @@ import org.json.JSONObject;
 import org.parceler.Parcels;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -63,10 +57,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Properties;
 
 /*
 * Thanks to these sources for making this work:
@@ -78,10 +69,12 @@ import java.util.Properties;
 *
 * Getting user location:
 * https://github.com/Pritish-git/get-Current-Location/blob/main/MainActivity.java
+*
+* Code running every x seconds:
+* https://www.tutorialspoint.com/how-to-run-a-method-every-10-seconds-in-android
 * */
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-
     // Variables for Google Maps
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
@@ -102,6 +95,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     // Delay is in milliseconds; 10000 is 10 seconds
     int delay = 10000;
 
+    // First method to run.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,9 +118,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationRequest.setInterval(5000);
         locationRequest.setFastestInterval(2000);
 
-        // Set up buttons
+        // Set up buttons, show route button is done later in onMapReady
+        // If the info button is pressed, go back to ShowLocationInfo without removing the first location in the queue
         Button infoButton = (Button) findViewById(R.id.infoButton);
-        // If the info button is pressed, go back to SHowLocationInfo without removing the first location in the queue
         infoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,9 +128,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+        // If the next stop button is pressed, go back to ShowLocationInfo; removing the first location from the queue before doing so
+        // If there's only one location in the tour left, this button will be hidden
         Button nextStopButton = (Button) findViewById(R.id.nextStopButton);
         if (tour.getTourLocations().size() > 1) {
-            // If the next stop button is pressed, go back to ShowLocationInfo; removing the first location from the queue before doing so
             nextStopButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -175,14 +170,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        // This needs to be called to initialise userLocation, otherwise it's null
+        // This is the earliest this method can be called, wont work any earlier like on onCreate
         getCurrentLocation();
 
+        // Initialise the map
         mMap = googleMap;
 
+        // Store the destination's LatLng in an easier to access variable
         destinationLocation = tour.getTourLocations().getFirst().getLatLng();
 
-        // Create a marker for the destination
+        // Create a marker for the destination, and move over there
         addMarker(destinationLocation, false);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(destinationLocation, 16));
 
@@ -199,6 +196,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     // Loops through the tour
     public void loopTour() {
+        // Clear the map, otherwise markers will start overlapping. Don't know how to delete specific markers yet
         mMap.clear();
         // Add markers on the map
         addMarker(userLocation, true);
@@ -214,10 +212,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     } // End of loopTour method
 
     public void addMarker(LatLng point, boolean isUser) {
+        // A marker option is basically a list of things a marker can have, such as position, icon, and colour
         MarkerOptions options = new MarkerOptions();
 
+        // Set the marker position
         options.position(point);
 
+        // Change the colour of the marker, depending on if the marker is for the user or not
         if (isUser) {
             options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
         } else {
@@ -227,10 +228,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(options);
     } // End of addMarker method
 
-    public void updateTest() {
-        System.out.println("A timed update occured!");
-    }
-
+    // Handles sending the tour object to ShowLocationInfo
     public void backToInfoScreen() {
         Parcelable parcelable = Parcels.wrap(tour);
 
@@ -238,7 +236,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fromMapToInfo.putExtra("Tour_Object", parcelable);
 
         startActivity(fromMapToInfo);
-    }
+    } // End of backToInfoScreen method
 
     // Runs after permissions were requested. If permissions were granted, turn on gps if not already or get user location
     @Override
@@ -254,7 +252,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         }
-    }// end of onRequestPermissionsResult method
+    }// End of onRequestPermissionsResult method
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @NonNull Intent data) {
@@ -326,8 +324,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             break;
                         case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
                             break;
-                    }
-                }
+                    } // End of switch
+                } // End of outer catch
             }
         });
     }// End of turnOnGPS method
@@ -344,7 +342,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         isEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
         return isEnabled;
-    }// end of isGPSEnabled method
+    }// End of isGPSEnabled method
 
     // Generate a URL to get the patch between two points, origin and dest
     private String getUrl(LatLng origin, LatLng dest) {
@@ -393,7 +391,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Log.d("Background Task", e.toString());
             }
             return data;
-        }
+        } // End of doInBackground method
 
         @Override
         protected void onPostExecute(String result) {
@@ -403,7 +401,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             // Invokes the thread for parsing the JSON data
             parserTask.execute(result);
-        }
+        } // End of onPostExecute method
     } // End of FetchUrl class
 
     // This method downloads the data generated by the url.
@@ -446,11 +444,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     // This class processes the data generated by the url, and uses it to create a route
     private class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String, String>>>> {
-
         // Parsing the data in non-ui thread
         @Override
         protected List<List<HashMap<String, String>>> doInBackground(String... jsonData) {
-
             JSONObject jObject;
             List<List<HashMap<String, String>>> routes = null;
 
@@ -470,7 +466,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 e.printStackTrace();
             }
             return routes;
-        }
+        } // End of doInBackground method
 
         // Executes in UI thread, after the parsing process
         @Override
@@ -496,14 +492,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     points.add(position);
                 }
-
                 // Adding all the points in the route to LineOptions
                 lineOptions.addAll(points);
                 lineOptions.width(10);
                 lineOptions.color(Color.BLUE);
 
                 Log.d("onPostExecute","onPostExecute lineoptions decoded");
-
             }
 
             // Drawing polyline in the Google Map for the i-th route
@@ -513,13 +507,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             else {
                 Log.d("onPostExecute","without Polylines drawn");
             }
-        }
+        } // End of onPostExecute method
     } // End of ParserTask class
 
     // Class for reading the data generated by the url
     class DataParser {
-        List<List<HashMap<String,String>>> parse(JSONObject jObject){
-            List<List<HashMap<String, String>>> routes = new ArrayList<>() ;
+        List<List<HashMap<String,String>>> parse(JSONObject jObject) {
+            List<List<HashMap<String, String>>> routes = new ArrayList<>();
             JSONArray jRoutes;
             JSONArray jLegs;
             JSONArray jSteps;
@@ -527,22 +521,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 jRoutes = jObject.getJSONArray("routes");
 
                 /** Traversing all routes */
-                for(int i=0;i<jRoutes.length();i++){
+                for(int i=0;i<jRoutes.length();i++) {
                     jLegs = ( (JSONObject)jRoutes.get(i)).getJSONArray("legs");
                     List path = new ArrayList<>();
 
                     /** Traversing all legs */
-                    for(int j=0;j<jLegs.length();j++){
+                    for(int j=0;j<jLegs.length();j++) {
                         jSteps = ( (JSONObject)jLegs.get(j)).getJSONArray("steps");
 
                         /** Traversing all steps */
-                        for(int k=0;k<jSteps.length();k++){
+                        for(int k=0;k<jSteps.length();k++) {
                             String polyline = "";
                             polyline = (String)((JSONObject)((JSONObject)jSteps.get(k)).get("polyline")).get("points");
                             List<LatLng> list = decodePoly(polyline);
 
                             /** Traversing all points */
-                            for(int l=0;l<list.size();l++){
+                            for(int l=0;l<list.size();l++) {
                                 HashMap<String, String> hm = new HashMap<>();
                                 hm.put("lat", Double.toString((list.get(l)).latitude) );
                                 hm.put("lng", Double.toString((list.get(l)).longitude) );
@@ -554,10 +548,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-            }catch (Exception e){
+            }catch (Exception e) {
             }
             return routes;
-        }
+        } // End of parse method
 
         /**
          * Method to decode polyline points
@@ -592,6 +586,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 poly.add(p);
             }
             return poly;
-        }
+        } // End of decodePoly method
     } // End of DataParser class
-} // End of class
+} // End of MapsActivity

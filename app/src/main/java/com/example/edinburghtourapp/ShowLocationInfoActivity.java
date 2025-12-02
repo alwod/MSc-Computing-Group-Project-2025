@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.activity.ComponentActivity;
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -18,14 +17,9 @@ import com.google.android.gms.maps.model.LatLng;
 
 import org.parceler.Parcels;
 
-import java.util.LinkedList;
-
 public class ShowLocationInfoActivity extends ComponentActivity {
-
     Tour tour;
     TourLocation currentStop;
-    boolean isFirstStop = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +29,12 @@ public class ShowLocationInfoActivity extends ComponentActivity {
         Parcelable parcelable = getIntent().getParcelableExtra("Tour_Object");
         tour = Parcels.unwrap(parcelable);
 
+        // Just use the test tour if tour is empty for some reason
         if (tour == null) {
             createTestTour();
         }
 
+        // Stuff required for the ui
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_show_location_info);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -47,14 +43,16 @@ public class ShowLocationInfoActivity extends ComponentActivity {
             return insets;
         });
 
-
+        // Store the first-most stop in the tour
         currentStop = tour.getTourLocations().getFirst();
 
+        // Set ui text boxes
         TextView nameText = (TextView) findViewById(R.id.locationNameText);
         TextView descriptionText = (TextView) findViewById(R.id.locationDescriptionText);
         nameText.setText(currentStop.getName());
         descriptionText.setText(currentStop.getDescription());
 
+        // Create buttons
         Button exitButton = (Button) findViewById(R.id.menuButton);
         Button directionsButton = (Button) findViewById(R.id.directionsButton);
 
@@ -78,6 +76,7 @@ public class ShowLocationInfoActivity extends ComponentActivity {
 
     } // End of onCreate method
 
+    // Handles sending the tour object to MapsActivity
     public void goToMap() {
         Parcelable parcelable = Parcels.wrap(tour);
 
@@ -85,7 +84,7 @@ public class ShowLocationInfoActivity extends ComponentActivity {
         fromInfoToMap.putExtra("Tour_Object", parcelable);
 
         startActivity(fromInfoToMap);
-    }
+    } // End of goToMap method
 
     public void createTestTour() {
         TourLocation testLocation1 = new TourLocation(0, "Napier Merchiston", "Our Uni", new LatLng(55.933144, -3.212863));
@@ -94,5 +93,5 @@ public class ShowLocationInfoActivity extends ComponentActivity {
         tour = new Tour("Test Tour", false);
         tour.addLocation(testLocation1);
         tour.addLocation(testLocation2);
-    }
-} // End of class
+    } // End of createTestTour method
+} // End of ShowLocationInfoActivity
