@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "311961483727",
+    "project_id": "tourapp-bcdf6",
+    "storage_bucket": "tourapp-bcdf6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311961483727:android:7c7513f825fb9fe5083aba",
+        "android_client_info": {
+          "package_name": "com.example.edinburghtourapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "311961483727-t9gm3hjh2ejd2l8mjqfr5mtiss85pddt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.edinburghtourapp",
+            "certificate_hash": "d458c2ace4a14524d429688e8c402ab713cfb207"
+          }
+        },
+        {
+          "client_id": "311961483727-tmtq0ho7qlvrtio0kh2gtopbu48v5bjj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOhQ7tKiqUKUWpYq-_5qeCAf4TOEJ00T0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "311961483727-tmtq0ho7qlvrtio0kh2gtopbu48v5bjj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

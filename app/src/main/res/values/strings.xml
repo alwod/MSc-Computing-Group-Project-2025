@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">TourApp</string>
+    <!-- Auth -->
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password (min 8)</string>
+    <string name="create_account">Create account</string>
+    <string name="sign_in">Sign in</string>
+    <string name="status_default"></string>
+
+    <!-- Profile -->
+    <string name="profile">Profile</string>
+    <string name="logged_in_as">Logged in as:</string>
+    <string name="logout">Logout</string>
+
+    <string name="msg_enter_valid_email">Enter a valid email</string>
+    <string name="msg_password_min_8">Password must be at least 8 characters</string>
+    <string name="msg_creating_account">Creating account...</string>
+    <string name="msg_email_password_required">Email and password required</string>
+    <string name="msg_signing_in">Signing in...</string>
+    <string name="msg_enter_email_first">Enter your email first</string>
+    <string name="msg_reset_sent">Password reset email sent</string>
+    <string name="msg_google_cancelled">Google sign-in cancelled</string>
+    <string name="msg_google_failed">Google sign-in failed</string>
+    <string name="msg_google_error_prefix">Google sign-in error: </string>
+
+</resources>

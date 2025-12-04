@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="et_cream">#FFF6E5</color>
+    <color name="et_blue">#1E5AA8</color>
+    <color name="et_blue_dark">#15427A</color>
+    <color name="et_blue_light">#CFEAFB</color>
+    <color name="et_text_dark">#132333</color>
+    <color name="et_text">#132333</color>
+    <color name="et_input_bg">#EEEEF1</color>
+    <color name="et_border">#333333</color>
+    <color name="white">#FFFFFF</color>
+</resources>

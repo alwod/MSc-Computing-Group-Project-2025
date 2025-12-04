@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/bg_dialog"
+    android:padding="16dp"
+    android:text="Thank you for signing up!\nYou will now be taken to our login page"
+    android:textColor="@color/et_text_dark"
+    android:textSize="18sp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/et_cream"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical" android:padding="24dp"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Create your account"
+            android:textColor="@color/et_blue_dark"
+            android:textSize="26sp" android:textStyle="bold"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+        <!-- First name -->
+        <TextView android:text="First Name" android:textColor="@color/et_text_dark"
+            android:layout_marginTop="24dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/etFirst"
+            android:background="@drawable/bg_input"
+            android:layout_width="match_parent" android:layout_height="48dp"/>
+
+        <!-- Last name -->
+        <TextView android:text="Last Name" android:textColor="@color/et_text_dark"
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/etLast"
+            android:background="@drawable/bg_input"
+            android:layout_width="match_parent" android:layout_height="48dp"/>
+
+        <!-- Email -->
+        <TextView android:text="Email" android:textColor="@color/et_text_dark"
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/etEmail"
+            android:background="@drawable/bg_input"
+            android:inputType="textEmailAddress" android:autofillHints="emailAddress"
+            android:layout_width="match_parent" android:layout_height="48dp"/>
+
+        <!-- Password -->
+        <TextView android:text="Password" android:textColor="@color/et_text_dark"
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/etPassword"
+            android:background="@drawable/bg_input"
+            android:inputType="textPassword" android:autofillHints="password"
+            android:layout_width="match_parent" android:layout_height="48dp"/>
+
+        <!-- Confirm -->
+        <TextView android:text="Confirm Password" android:textColor="@color/et_text_dark"
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/etConfirm"
+            android:background="@drawable/bg_input"
+            android:inputType="textPassword"
+            android:layout_width="match_parent" android:layout_height="48dp"/>
+
+        <Button
+            android:id="@+id/btnSignup"
+            android:text="Sign Up" android:textStyle="bold"
+            android:textColor="@color/et_text_dark"
+            android:background="@drawable/bg_button_primary"
+            android:layout_marginTop="20dp"
+            android:layout_width="220dp" android:layout_height="48dp"/>
+    </LinearLayout>
+</ScrollView>

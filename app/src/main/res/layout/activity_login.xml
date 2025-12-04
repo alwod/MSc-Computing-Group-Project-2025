@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/et_cream"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical" android:padding="24dp"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+
+        <!-- App title -->
+        <TextView
+            android:text="Edinburgh Tours"
+            android:textColor="@color/et_blue_dark"
+            android:textSize="28sp" android:textStyle="bold"
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+        <!-- Welcome subtitle -->
+        <TextView
+            android:text="Welcome!\nPlease log in to get started."
+            android:textColor="@color/et_text_dark"
+            android:textSize="20sp"
+            android:layout_marginTop="24dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+        <!-- Email -->
+        <TextView
+            android:text="Email" android:textColor="@color/et_text_dark"
+            android:layout_marginTop="24dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/etEmail"
+            android:background="@drawable/bg_input"
+            android:autofillHints="emailAddress"
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent" android:layout_height="48dp"/>
+
+        <!-- Password -->
+        <TextView
+            android:text="Password" android:textColor="@color/et_text_dark"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/etPassword"
+            android:background="@drawable/bg_input"
+            android:autofillHints="password"
+            android:inputType="textPassword"
+            android:layout_width="match_parent" android:layout_height="48dp"/>
+
+        <!-- Log In button -->
+        <Button
+            android:id="@+id/btnLogin"
+            android:text="Log In"
+            android:textStyle="bold"
+            android:textColor="@color/et_text_dark"
+            android:background="@drawable/bg_button_primary"
+            android:layout_marginTop="24dp"
+            android:layout_width="220dp" android:layout_height="48dp"/>
+
+        <Button
+            android:id="@+id/btnGoogle"
+            android:text="Continue with Google"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"/>
+
+        <!-- Forgot password -->
+        <TextView
+            android:id="@+id/tvForgot"
+            android:text="Forgot password?"
+            android:textColor="@color/et_blue_dark"
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+        <!-- “here” link to create account -->
+        <TextView
+            android:id="@+id/tvToSignup"
+            android:text="Click here to create an account"
+            android:textColor="@color/et_blue_dark"
+            android:layout_marginTop="28dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+</ScrollView>
