@@ -2,7 +2,6 @@ package com.example.edinburghtourapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,10 +11,6 @@ import androidx.activity.EdgeToEdge;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
-import com.google.android.gms.maps.model.LatLng;
-
-import org.parceler.Parcels;
 
 public class ShowLocationInfoActivity extends ComponentActivity {
     Tour tour;
@@ -54,9 +49,7 @@ public class ShowLocationInfoActivity extends ComponentActivity {
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO either go back to main menu or close app
-                finish();
-                System.exit(0);
+                goToTourMenu();
             }
         });
 
@@ -77,4 +70,10 @@ public class ShowLocationInfoActivity extends ComponentActivity {
 
         startActivity(intent);
     } // End of goToMap method
+
+    public void goToTourMenu() {
+        Intent intent = new Intent(this, TourMenuActivity.class);
+
+        startActivity(intent);
+    }
 } // End of ShowLocationInfoActivity
