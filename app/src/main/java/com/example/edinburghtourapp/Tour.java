@@ -20,14 +20,32 @@ public class Tour implements Serializable {
 
     // Add a stop to the tour FIFO order
     public void addLocation(TourLocation location) {
-        locations.add(location);
+        this.locations.add(location);
+    }
+
+    // Remove the first-most stop from the tour
+    public void removeFirstLocation() {
+        this.locations.removeFirst();
+    }
+
+    public String toString() {
+        String output = "";
+
+        output += "Tour ID: " + getId() + "\n";
+        output += "Tour title: " + getTitle() + "\n";
+        output += "Tour category: " + getCategory() + "\n";
+        output += "Locations: \n";
+        for (TourLocation tempLocation : getLocations()) {
+            output += tempLocation.toString();
+        }
+        return output;
     }
 
     // Getters
-    public String getId()               { return id; }
-    public String getTitle()            { return title; }
-    public String getCategory()         { return category; }
+    public String getId()               { return this.id; }
+    public String getTitle()            { return this.title; }
+    public String getCategory()         { return this.category; }
     public List<TourLocation> getLocations() {
-        return locations;
+        return this.locations;
     }
 }

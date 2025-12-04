@@ -17,9 +17,19 @@ public class TourLocation implements Serializable {
         this.longitude = longitude;
     }
 
+    public String toString() {
+        String output = "";
+
+        output += "Location name: " + getName() + "\n";
+        output += "Location description: " + getDescription() + "\n";
+        output += "Coordinates: " + getLatitude() + " latitude, " + getLongitude() + "longitude\n";
+
+        return output;
+    }
+
     // Getters to use in ShowLocationInfoActivity
-    public String getName()        { return name; }
-    public String getDescription() { return description; }
-    public double getLatitude()    { return latitude; }
-    public double getLongitude()   { return longitude; }
+    public String getName()        { return this.name; }
+    public String getDescription() { return this.description; }
+    public double getLatitude()    { return this.latitude; }
+    public double getLongitude()   { return this.longitude; }
 }
