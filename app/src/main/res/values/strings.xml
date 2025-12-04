@@ -24,6 +24,4 @@
     <string name="msg_google_cancelled">Google sign-in cancelled</string>
     <string name="msg_google_failed">Google sign-in failed</string>
     <string name="msg_google_error_prefix">Google sign-in error: </string>
-
-    <string name="default_web_client_id"></string>
 </resources>
