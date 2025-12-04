@@ -26,13 +26,7 @@ public class ShowLocationInfoActivity extends ComponentActivity {
         super.onCreate(savedInstanceState);
 
         // Get tour object
-        Parcelable parcelable = getIntent().getParcelableExtra("Tour_Object");
-        tour = Parcels.unwrap(parcelable);
-
-        // Just use the test tour if tour is empty for some reason
-        if (tour == null) {
-            createTestTour();
-        }
+        tour = (Tour) getIntent().getSerializableExtra("Tour_Object");
 
         // Stuff required for the ui
         EdgeToEdge.enable(this);
@@ -44,7 +38,7 @@ public class ShowLocationInfoActivity extends ComponentActivity {
         });
 
         // Store the first-most stop in the tour
-        currentStop = tour.getTourLocations().getFirst();
+        currentStop = tour.getLocations().getFirst();
 
         // Set ui text boxes
         TextView nameText = (TextView) findViewById(R.id.locationNameText);
@@ -78,20 +72,9 @@ public class ShowLocationInfoActivity extends ComponentActivity {
 
     // Handles sending the tour object to MapsActivity
     public void goToMap() {
-        Parcelable parcelable = Parcels.wrap(tour);
+        Intent intent = new Intent(this, MapsActivity.class);
+        intent.putExtra("Tour_Object", tour);
 
-        Intent fromInfoToMap = new Intent(this, MapsActivity.class);
-        fromInfoToMap.putExtra("Tour_Object", parcelable);
-
-        startActivity(fromInfoToMap);
+        startActivity(intent);
     } // End of goToMap method
-
-    public void createTestTour() {
-        TourLocation testLocation1 = new TourLocation(0, "Napier Merchiston", "Our Uni", new LatLng(55.933144, -3.212863));
-        TourLocation testLocation2 = new TourLocation(1, "Tesco", "The tesco near the uni", new LatLng(55.934010, -3.210572));
-
-        tour = new Tour("Test Tour", false);
-        tour.addLocation(testLocation1);
-        tour.addLocation(testLocation2);
-    } // End of createTestTour method
 } // End of ShowLocationInfoActivity

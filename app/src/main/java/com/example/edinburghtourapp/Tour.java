@@ -1,78 +1,51 @@
 package com.example.edinburghtourapp;
 
-import android.os.Parcelable;
-
-import androidx.annotation.NonNull;
-
-import org.parceler.Parcel;
-
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.List;
 
-@Parcel
-public class Tour {
-    // Instance variables
-    String tourName;
-    LinkedList<TourLocation> tourLocations = new LinkedList<TourLocation>();
-    Boolean isAccessible = false;
+public class Tour implements Serializable {
 
-    // Constructors
-    public Tour() {
+    private String id;                       // e.g. "bites_pints"
+    private String title;                    // e.g. "Bites and Pints Tour"
+    private String category;                 // e.g. "Food", "History"
+    private LinkedList<TourLocation> locations;
 
+    public Tour(String id, String title, String category) {
+        this.id = id;
+        this.title = title;
+        this.category = category;
+        this.locations = new LinkedList<>();
     }
-    public Tour(String tourName, Boolean isAccessible) {
-        setTourName(tourName);
-        setAccessible(isAccessible);
-    }
 
+    // Add a stop to the tour FIFO order
     public void addLocation(TourLocation location) {
-        getTourLocations().add(location);
+        this.locations.add(location);
     }
 
-    public void removeLocation() {
-        getTourLocations().removeFirst();
+    // Remove the first-most stop from the tour
+    public void removeFirstLocation() {
+        this.locations.removeFirst();
     }
 
     public String toString() {
         String output = "";
 
-        output += "Name of tour: " + getTourName() + "\n";
-
-        if(getAccessible()) {
-            output += "The tour is considered accessible\n";
-        }
-        else {
-            output += "The tour is not considered accessible\n";
-        }
-
-        for (TourLocation tempLocation : getTourLocations()) {
+        output += "Tour ID: " + getId() + "\n";
+        output += "Tour title: " + getTitle() + "\n";
+        output += "Tour category: " + getCategory() + "\n";
+        output += "Locations: \n";
+        for (TourLocation tempLocation : getLocations()) {
             output += tempLocation.toString();
         }
-
         return output;
     }
 
-    // Getters and setters
-    public void setAccessible(Boolean accesable) {
-        this.isAccessible = accesable;
+    // Getters
+    public String getId()               { return this.id; }
+    public String getTitle()            { return this.title; }
+    public String getCategory()         { return this.category; }
+    public List<TourLocation> getLocations() {
+        return this.locations;
     }
-    public Boolean getAccessible() {
-        return this.isAccessible;
-    }
-
-    public LinkedList<TourLocation> getTourLocations() {
-        return this.tourLocations;
-    }
-
-    public void setTourLocations(LinkedList<TourLocation> tourLocations) {
-        this.tourLocations = tourLocations;
-    }
-
-    public String getTourName() {
-        return this.tourName;
-    }
-    public void setTourName(String tourName) {
-        this.tourName = tourName;
-    }
-    // end of getters and setters
-} // end of class
+}

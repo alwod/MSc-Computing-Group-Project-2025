@@ -22,7 +22,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.edinburghtourapp"
-        minSdk = 25
+        minSdk = 35
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -73,7 +73,10 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation("com.google.android.gms:play-services-location:21.3.0")
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
     implementation("org.parceler:parceler-api:1.1.12")
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
     annotationProcessor("org.parceler:parceler:1.1.12")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

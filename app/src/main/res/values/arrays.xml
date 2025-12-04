@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="travel_methods">
+        <item>Walking</item>
+        <item>Wheelchair-friendly</item>
+        <item>Cycling</item>
+        <item>Public Transport</item>
+        <item>Driving</item>
+    </string-array>
+</resources>

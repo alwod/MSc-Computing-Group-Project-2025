@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/et_cream"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical" android:padding="24dp"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+
+        <!-- Heading -->
+        <TextView
+            android:text="Profile"
+            android:textColor="@color/et_blue_dark"
+            android:textSize="26sp" android:textStyle="bold"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+        <!-- First name -->
+        <TextView android:text="First Name:" android:textStyle="bold" android:textColor="@color/et_text_dark"
+            android:layout_marginTop="24dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/etFirst"
+            android:background="@drawable/bg_input"
+            android:layout_width="match_parent" android:layout_height="48dp"/>
+
+        <!-- Last name -->
+        <TextView android:text="Last Name:" android:textStyle="bold" android:textColor="@color/et_text_dark"
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/etLast"
+            android:background="@drawable/bg_input"
+            android:layout_width="match_parent" android:layout_height="48dp"/>
+
+        <!-- Email -->
+        <TextView android:text="Email:" android:textStyle="bold" android:textColor="@color/et_text_dark"
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tvEmail"
+            android:textColor="@color/et_text_dark"
+            android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+        <!-- Preferred travel method -->
+        <TextView android:text="Preferred Travel Method:" android:textStyle="bold" android:textColor="@color/et_text_dark"
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <Spinner
+            android:id="@+id/spMethod"
+            android:entries="@array/travel_methods"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <!-- Save + Logout -->
+        <Button
+            android:id="@+id/btnSave"
+            android:text="Save"
+            android:textColor="@color/et_text_dark" android:textStyle="bold"
+            android:background="@drawable/bg_button_primary"
+            android:layout_marginTop="20dp"
+            android:layout_width="140dp" android:layout_height="44dp"/>
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:text="Logout"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+</ScrollView>

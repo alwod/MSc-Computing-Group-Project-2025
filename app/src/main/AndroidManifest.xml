@@ -20,10 +20,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EdinburghTourApp">
         <activity
+            android:name=".SignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AuthActivity"
+            android:exported="true" />
+        <activity
             android:name=".ShowLocationInfoActivity"
             android:exported="true" />
         <activity
-            android:name=".SelectTourActivity"
+            android:name=".TourMenuActivity"
             android:exported="true" />
 
         <meta-data

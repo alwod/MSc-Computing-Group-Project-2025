@@ -101,8 +101,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
 
         // Get tour object from ShowLocationInfoActivity
-        Parcelable parcelable = getIntent().getParcelableExtra("Tour_Object");
-        tour = Parcels.unwrap(parcelable);
+        tour = (Tour) getIntent().getSerializableExtra("Tour_Object");
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -131,11 +130,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // If the next stop button is pressed, go back to ShowLocationInfo; removing the first location from the queue before doing so
         // If there's only one location in the tour left, this button will be hidden
         Button nextStopButton = (Button) findViewById(R.id.nextStopButton);
-        if (tour.getTourLocations().size() > 1) {
+        if (tour.getLocations().size() > 1) {
             nextStopButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    tour.removeLocation();
+                    tour.removeFirstLocation();
                     backToInfoScreen();
                 }
             });
@@ -177,7 +176,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Store the destination's LatLng in an easier to access variable
-        destinationLocation = tour.getTourLocations().getFirst().getLatLng();
+        destinationLocation = new LatLng(tour.getLocations().getFirst().getLatitude(),
+                tour.getLocations().getFirst().getLongitude());
 
         // Create a marker for the destination, and move over there
         addMarker(destinationLocation, false);
@@ -230,10 +230,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     // Handles sending the tour object to ShowLocationInfo
     public void backToInfoScreen() {
-        Parcelable parcelable = Parcels.wrap(tour);
-
         Intent fromMapToInfo = new Intent(this, ShowLocationInfoActivity.class);
-        fromMapToInfo.putExtra("Tour_Object", parcelable);
+        fromMapToInfo.putExtra("Tour_Object", tour);
 
         startActivity(fromMapToInfo);
     } // End of backToInfoScreen method
