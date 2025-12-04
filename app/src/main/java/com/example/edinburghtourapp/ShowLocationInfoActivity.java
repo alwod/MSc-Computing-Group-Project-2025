@@ -14,8 +14,6 @@ public class ShowLocationInfoActivity extends AppCompatActivity {
         // Get the Tour object that was passed from TourMenuActivity
         Tour selectedTour = (Tour) getIntent().getSerializableExtra("tour");
 
-        if (selectedTour != null) {
-            // design the UI later
-        }
+        System.out.println(selectedTour.getLocations().getFirst().getName());
     }
 }
