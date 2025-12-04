@@ -76,7 +76,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:21.2.0")
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
-    implementation("com.google.firebase:firebase-bom:33.2.0")
+    implementation(platform("com.google.firebase:firebase-bom:33.2.0"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
