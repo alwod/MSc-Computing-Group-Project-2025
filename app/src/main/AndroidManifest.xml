@@ -21,10 +21,10 @@
         android:theme="@style/Theme.EdinburghTourApp">
         <activity
             android:name=".SignupActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ProfileActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".AuthActivity"
             android:exported="true" />
