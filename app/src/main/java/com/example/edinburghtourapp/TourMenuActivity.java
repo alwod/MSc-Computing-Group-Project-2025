@@ -50,6 +50,51 @@ public class TourMenuActivity extends ComponentActivity {
         Tour t;
         LinkedList<TourLocation> locations = new LinkedList<TourLocation>();
 
+        TourLocation l1 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l1);
+
+        TourLocation l2 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l2);
+
+        TourLocation l3 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l3);
+
+        TourLocation l4 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l4);
+
+        TourLocation l5 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l5);
+
+        TourLocation l6 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l6);
+
+        TourLocation l7 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l7);
+
+        TourLocation l8 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l8);
+
+        TourLocation l9 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l9);
+
         t = new Tour("bites_pints", "Bites and Pints Tour", "Food", locations);
 
         return t;
@@ -114,6 +159,41 @@ public class TourMenuActivity extends ComponentActivity {
         Tour t;
         LinkedList<TourLocation> locations = new LinkedList<TourLocation>();
 
+        TourLocation l1 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l1);
+
+        TourLocation l2 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l2);
+
+        TourLocation l3 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l3);
+
+        TourLocation l4 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l4);
+
+        TourLocation l5 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l5);
+
+        TourLocation l6 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l6);
+
+        TourLocation l7 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l7);
+
         t = new Tour("cafe", "City-Centre Cafe Loop", "Food", locations);
 
         return t;
@@ -123,6 +203,51 @@ public class TourMenuActivity extends ComponentActivity {
         Tour t;
         LinkedList<TourLocation> locations = new LinkedList<TourLocation>();
 
+        TourLocation l1 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l1);
+
+        TourLocation l2 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l2);
+
+        TourLocation l3 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l3);
+
+        TourLocation l4 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l4);
+
+        TourLocation l5 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l5);
+
+        TourLocation l6 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l6);
+
+        TourLocation l7 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l7);
+
+        TourLocation l8 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l8);
+
+        TourLocation l9 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l9);
+
         t = new Tour("historical", "Edinburgh's Hidden History", "History", locations);
 
         return t;
@@ -131,6 +256,40 @@ public class TourMenuActivity extends ComponentActivity {
     private Tour createLocalBusinessTour() {
         Tour t;
         LinkedList<TourLocation> locations = new LinkedList<TourLocation>();
+        TourLocation l1 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l1);
+
+        TourLocation l2 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l2);
+
+        TourLocation l3 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l3);
+
+        TourLocation l4 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l4);
+
+        TourLocation l5 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l5);
+
+        TourLocation l6 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l6);
+
+        TourLocation l7 = new TourLocation("",
+                "",
+                55.0, -3.0);
+        locations.add(l7);
 
         t = new Tour("nature", "Nature in the City", "Culture", locations);
 
