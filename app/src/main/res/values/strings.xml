@@ -23,4 +23,7 @@
     <string name="msg_google_failed">Google sign-in failed</string>
     <string name="msg_google_error_prefix">Google sign-in error: </string>
 
+    <!--Map-->
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
 </resources>

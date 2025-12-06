@@ -1,21 +1,75 @@
 package com.example.edinburghtourapp;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ShowLocationInfoActivity extends AppCompatActivity {
+
+    private Tour tour;
+    private int currentIndex = 0;
+
+    private TextView tvTourName;
+    private TextView tvCategory;
+    private TextView tvStopTitle;
+    private TextView tvDescription;
+    private TextView tvCounter;
+    private Button btnPrev, btnNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_location_info);
 
-        // Get the Tour object that was passed from TourMenuActivity
-        Tour selectedTour = (Tour) getIntent().getSerializableExtra("tour");
-
-        if (selectedTour != null) {
-            // design the UI later
+        // Get Tour from Intent
+        tour = (Tour) getIntent().getSerializableExtra("tour");
+        if (tour == null) {
+            finish();
+            return;
         }
+
+        // Link Java variables to XML views
+        tvTourName   = findViewById(R.id.tvTourName);
+        tvCategory   = findViewById(R.id.tvCategory);
+        tvStopTitle  = findViewById(R.id.tvStopTitle);
+        tvDescription = findViewById(R.id.tvDescription);
+        tvCounter    = findViewById(R.id.tvCounter);
+        btnPrev      = findViewById(R.id.btnPrev);
+        btnNext      = findViewById(R.id.btnNext);
+
+        tvTourName.setText(tour.getName());
+        tvCategory.setText(tour.getCategory());
+
+        btnPrev.setOnClickListener(v -> {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showCurrentStop();
+            }
+        });
+
+        btnNext.setOnClickListener(v -> {
+            if (currentIndex < tour.getStops().size() - 1) {
+                currentIndex++;
+                showCurrentStop();
+            }
+        });
+
+        // Show the first stop
+        showCurrentStop();
+    }
+
+    private void showCurrentStop() {
+        TourLocation loc = tour.getStops().get(currentIndex);
+
+        tvStopTitle.setText(loc.getTitle());
+        tvDescription.setText(loc.getDescription());
+
+        String counterText = (currentIndex + 1) + " / " + tour.getStops().size();
+        tvCounter.setText(counterText);
+
+        btnPrev.setEnabled(currentIndex > 0);
+        btnNext.setEnabled(currentIndex < tour.getStops().size() - 1);
     }
 }
