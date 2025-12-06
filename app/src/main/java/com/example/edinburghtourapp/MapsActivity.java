@@ -84,7 +84,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng destinationLocation;
 
     // Variables for tracking the tour
-    Tour tour;
     boolean hasStartedTour = false;
 
     // Variables for the timer
@@ -98,8 +97,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Get tour object from ShowLocationInfoActivity
-        tour = (Tour) getIntent().getSerializableExtra("Tour_Object");
+        // Get LatLng from ShowLocationInfoActivity
+        double destLat = (double) getIntent().getDoubleExtra("Latitude", 0);
+        double destLng = (double) getIntent().getDoubleExtra("Longitude", 0);
+        destinationLocation = new LatLng(destLat, destLng);
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -124,21 +125,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 backToInfoScreen();
             }
         });
-
-        // If the next stop button is pressed, go back to ShowLocationInfo; removing the first location from the queue before doing so
-        // If there's only one location in the tour left, this button will be hidden
-        Button nextStopButton = (Button) findViewById(R.id.nextStopButton);
-        if (tour.getLocations().size() > 1) {
-            nextStopButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    tour.removeFirstLocation();
-                    backToInfoScreen();
-                }
-            });
-        } else {
-            nextStopButton.setVisibility(View.GONE);
-        }
     } // End of onCreate method
 
     @Override
@@ -172,10 +158,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Initialise the map
         mMap = googleMap;
-
-        // Store the destination's LatLng in an easier to access variable
-        destinationLocation = new LatLng(tour.getLocations().getFirst().getLatitude(),
-                tour.getLocations().getFirst().getLongitude());
 
         // Create a marker for the destination, and move over there
         addMarker(destinationLocation, false);
@@ -229,7 +211,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     // Handles sending the tour object to ShowLocationInfo
     public void backToInfoScreen() {
         Intent fromMapToInfo = new Intent(this, ShowLocationInfoActivity.class);
-        fromMapToInfo.putExtra("Tour_Object", tour);
 
         startActivity(fromMapToInfo);
     } // End of backToInfoScreen method

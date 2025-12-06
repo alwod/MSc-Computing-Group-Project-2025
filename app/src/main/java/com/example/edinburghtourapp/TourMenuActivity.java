@@ -38,93 +38,38 @@ public class TourMenuActivity extends ComponentActivity {
     // Opens the next screen with the selected Tour
     private void openTour(Tour tour) {
         Intent i = new Intent(this, ShowLocationInfoActivity.class);
-        i.putExtra("Tour_Object", tour);   // Tour is Serializable
+        i.putExtra("tour", tour);   // Tour is Serializable
         startActivity(i);
     }
 
     // ===== Hard-coded tours with coords, have to replace with actual coords =====
 
     private Tour createBitesPintsTour() {
-        Tour t = new Tour("bites_pints", "Bites and Pints Tour", "Food");
-
-        t.addLocation(new TourLocation(
-                "Pub One",
-                "Try local beer and classic bar snacks.",
-                50.9490, -33.1900    // TODO: replace with actual coords
-        ));
-        t.addLocation(new TourLocation(
-                "Pub Two",
-                "Traditional Scottish pub with live music.",
-                15.9500, -36.1870
-        ));
+        Tour t;
 
         return t;
     }
 
     private Tour createBookshopTour() {
-        Tour t = new Tour("bookshop", "Bookshop Tour", "Culture");
-
-        t.addLocation(new TourLocation(
-                "Old Town Books",
-                "Independent bookshop with rare editions.",
-                55.9470, -3.1920
-        ));
-        t.addLocation(new TourLocation(
-                "Comics & Tales",
-                "Graphic novels, manga and collectibles.",
-                55.9460, -3.1880
-        ));
+        Tour t;
 
         return t;
     }
 
     private Tour createCafeTour() {
-        Tour t = new Tour("cafe", "Cafe Tour", "Food");
-
-        t.addLocation(new TourLocation(
-                "Brew Lab Cafe",
-                "Specialty coffee and study-friendly space.",
-                55.9475, -3.1860
-        ));
-        t.addLocation(new TourLocation(
-                "Cake Corner",
-                "Home-made cakes and hot chocolate.",
-                55.9482, -3.1840
-        ));
+        Tour t;
 
         return t;
     }
 
     private Tour createHistoricalTour() {
-        Tour t = new Tour("historical", "Historical Tour", "History");
-
-        t.addLocation(new TourLocation(
-                "Edinburgh Castle",
-                "Iconic fortress with city views.",
-                55.9486, -3.1999
-        ));
-        t.addLocation(new TourLocation(
-                "Royal Mile",
-                "Historic street linking castle and palace.",
-                55.9495, -3.1900
-        ));
+        Tour t;
 
         return t;
     }
 
     private Tour createLocalBusinessTour() {
-        Tour t = new Tour("local_business", "Local Businesses Tour", "Shopping");
-
-        t.addLocation(new TourLocation(
-                "Crafts & Co.",
-                "Handmade gifts from local artists.",
-                55.9468, -3.1855
-        ));
-        t.addLocation(new TourLocation(
-                "Family Deli",
-                "Family-run deli with local products.",
-                55.9473, -3.1835
-        ));
+        Tour t;
 
         return t;
     }

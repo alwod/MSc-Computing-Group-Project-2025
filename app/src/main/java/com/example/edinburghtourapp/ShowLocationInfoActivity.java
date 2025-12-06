@@ -13,67 +13,80 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class ShowLocationInfoActivity extends ComponentActivity {
-    Tour tour;
-    TourLocation currentStop;
+    private Tour tour;
+    private int currentIndex = 0;
+
+    private TextView tvTourName;
+    private TextView tvCategory;
+    private TextView tvStopTitle;
+    private TextView tvDescription;
+    private TextView tvCounter;
+    private Button btnPrev;
+    private Button btnViewOnMap;
+    private Button btnNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Get tour object
-        tour = (Tour) getIntent().getSerializableExtra("Tour_Object");
-
-        // Stuff required for the ui
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_show_location_info);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
-        // Store the first-most stop in the tour
-        currentStop = tour.getLocations().getFirst();
+        // Get Tour from Intent
+        tour = (Tour) getIntent().getSerializableExtra("tour");
+        if (tour == null) {
+            finish();
+            return;
+        }
 
-        // Set ui text boxes
-        TextView nameText = (TextView) findViewById(R.id.locationNameText);
-        TextView descriptionText = (TextView) findViewById(R.id.locationDescriptionText);
-        nameText.setText(currentStop.getName());
-        descriptionText.setText(currentStop.getDescription());
+        // Link Java variables to XML views
+        tvTourName   = findViewById(R.id.tvTourName);
+        tvCategory   = findViewById(R.id.tvCategory);
+        tvStopTitle  = findViewById(R.id.tvStopTitle);
+        tvDescription = findViewById(R.id.tvDescription);
+        tvCounter    = findViewById(R.id.tvCounter);
+        btnPrev      = findViewById(R.id.btnPrev);
+        btnNext      = findViewById(R.id.btnNext);
+        btnViewOnMap = findViewById(R.id.btnViewOnMap);
 
-        // Create buttons
-        Button exitButton = (Button) findViewById(R.id.menuButton);
-        Button directionsButton = (Button) findViewById(R.id.directionsButton);
+        tvTourName.setText(tour.getName());
+        tvCategory.setText(tour.getCategory());
 
-        // If exit button is pressed, go back to main menu
-        exitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToTourMenu();
+        btnPrev.setOnClickListener(v -> {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showCurrentStop();
             }
         });
 
-        // If next directions button is pressed
-        directionsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToMap();
+        btnNext.setOnClickListener(v -> {
+            if (currentIndex < tour.getStops().size() - 1) {
+                currentIndex++;
+                showCurrentStop();
             }
         });
 
-    } // End of onCreate method
+        btnViewOnMap.setOnClickListener(v -> {
+            TourLocation loc = tour.getStops().get(currentIndex);
 
-    // Handles sending the tour object to MapsActivity
-    public void goToMap() {
-        Intent intent = new Intent(this, MapsActivity.class);
-        intent.putExtra("Tour_Object", tour);
+            Intent intent = new Intent(ShowLocationInfoActivity.this, MapsActivity.class);
+            intent.putExtra("location_name", loc.getTitle());
+            intent.putExtra("latitude",     loc.getLatitude());
+            intent.putExtra("longitude",    loc.getLongitude());
+            startActivity(intent);
+        });
+        // Show the first stop
+        showCurrentStop();
+    }
 
-        startActivity(intent);
-    } // End of goToMap method
+    private void showCurrentStop() {
+        TourLocation loc = tour.getStops().get(currentIndex);
 
-    public void goToTourMenu() {
-        Intent intent = new Intent(this, TourMenuActivity.class);
+        tvStopTitle.setText(loc.getTitle());
+        tvDescription.setText(loc.getDescription());
 
-        startActivity(intent);
+        String counterText = (currentIndex + 1) + " / " + tour.getStops().size();
+        tvCounter.setText(counterText);
+
+        btnPrev.setEnabled(currentIndex > 0);
+        btnNext.setEnabled(currentIndex < tour.getStops().size() - 1);
     }
 } // End of ShowLocationInfoActivity
