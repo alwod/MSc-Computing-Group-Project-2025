@@ -17,7 +17,9 @@ public class ShowLocationInfoActivity extends AppCompatActivity {
     private TextView tvStopTitle;
     private TextView tvDescription;
     private TextView tvCounter;
-    private Button btnPrev, btnNext;
+    private Button btnPrev;
+    private Button btnViewOnMap;
+    private Button btnNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
