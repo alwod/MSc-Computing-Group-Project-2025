@@ -84,6 +84,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng destinationLocation;
 
     // Variables for tracking the tour
+    Tour tour;
+    int tourIndex;
     boolean hasStartedTour = false;
 
     // Variables for the timer
@@ -97,9 +99,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Get LatLng from ShowLocationInfoActivity
-        double destLat = (double) getIntent().getDoubleExtra("latitude", 0);
-        double destLng = (double) getIntent().getDoubleExtra("longitude", 0);
+        // Get LatLng and tour from ShowLocationInfoActivity
+        tour = (Tour) getIntent().getSerializableExtra("tour");
+        tourIndex = (int) getIntent().getIntExtra("index", 0);
+
+        double destLat = tour.getStops().get(tourIndex).getLatitude();
+        double destLng = tour.getStops().get(tourIndex).getLongitude();
+
         destinationLocation = new LatLng(destLat, destLng);
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
@@ -210,9 +216,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     // Handles sending the tour object to ShowLocationInfo
     public void backToInfoScreen() {
-        Intent fromMapToInfo = new Intent(this, ShowLocationInfoActivity.class);
+        Intent intent = new Intent(this, ShowLocationInfoActivity.class);
 
-        startActivity(fromMapToInfo);
+        intent.putExtra("tour", tour);
+        intent.putExtra("index", tourIndex);
+
+        startActivity(intent);
     } // End of backToInfoScreen method
 
     // Runs after permissions were requested. If permissions were granted, turn on gps if not already or get user location

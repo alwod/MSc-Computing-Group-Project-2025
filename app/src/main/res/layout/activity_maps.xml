@@ -27,21 +27,14 @@
                 android:id="@+id/infoButton"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginLeft="55dp"
-                android:text="Show Info Again"></Button>
+                android:layout_marginLeft="110dp"
+                android:text="Select Stop"></Button>
 
             <Button
                 android:id="@+id/remakeRouteButton"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:text="Find Route"></Button>
-
-            <Button
-                android:id="@+id/nextStopButton"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:text="NEXT  STOP">
-            </Button>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

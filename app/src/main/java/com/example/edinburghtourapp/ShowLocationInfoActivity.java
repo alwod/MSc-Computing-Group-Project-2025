@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class ShowLocationInfoActivity extends ComponentActivity {
     private Tour tour;
-    private int currentIndex = 0;
+    private int currentIndex;
 
     private TextView tvTourName;
     private TextView tvCategory;
@@ -36,6 +36,7 @@ public class ShowLocationInfoActivity extends ComponentActivity {
             finish();
             return;
         }
+        currentIndex = (int) getIntent().getIntExtra("index", 0);
 
         // Link Java variables to XML views
         tvTourName   = findViewById(R.id.tvTourName);
@@ -71,6 +72,8 @@ public class ShowLocationInfoActivity extends ComponentActivity {
             intent.putExtra("location_name", loc.getTitle());
             intent.putExtra("latitude",     loc.getLatitude());
             intent.putExtra("longitude",    loc.getLongitude());
+            intent.putExtra("index", currentIndex);
+            intent.putExtra("tour", tour);
             startActivity(intent);
         });
         // Show the first stop
