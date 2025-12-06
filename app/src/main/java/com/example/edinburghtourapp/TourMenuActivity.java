@@ -159,39 +159,39 @@ public class TourMenuActivity extends ComponentActivity {
         Tour t;
         LinkedList<TourLocation> locations = new LinkedList<TourLocation>();
 
-        TourLocation l1 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l1 = new TourLocation("Room and Rumors",
+                "Located just steps away from Waverley train station in the Arches, this cute cafe has great drinks and snacks in a trendy setting. Their specialty is donuts, so donut miss out!",
+                55.95152137845162, -3.1843510418518255);
         locations.add(l1);
 
-        TourLocation l2 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l2 = new TourLocation("Black Medicine Coffee",
+                "An Edinburgh institution, Black Medicine Coffee Co is a popular spot with uni students for a reason. Find a seat upstairs to watch the world go by on the busy South Bridge, or head to the basement for a cosier coffee.",
+                55.94726358835867, -3.1854526204141154);
         locations.add(l2);
 
-        TourLocation l3 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l3 = new TourLocation("Lady and the Bear",
+                "Next, start strolling towards the Meadows and stop in to Lady and the Bear to try their award-winning Mediterranean food, as well as coffee from their own micro-roastery. You can also come back in the evening for theatre and music performances.",
+                55.940799855553955, -3.1818270302088427);
         locations.add(l3);
 
-        TourLocation l4 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l4 = new TourLocation("Uplands Roast",
+                "Then, head along Meadows Walk to Uplands Roast. While this coffee cart has many excellent drinks, their hot chocolates are the talk of the town. Grab one to sip on as you walk through the Meadows.",
+                55.94264372432357, -3.18962217808571);
         locations.add(l4);
 
-        TourLocation l5 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l5 = new TourLocation("C O M B",
+                "After your stroll, you may want a bigger bite to eat! So head to Comb for good food and good coffee in an eclectic, artsy atmosphere.",
+                55.941800169378, -3.202807291578874);
         locations.add(l5);
 
-        TourLocation l6 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l6 = new TourLocation("Lovecrumbs",
+                "As your penultimate stop, head to Lovecrumbs and see if you can snag a coveted window seat, where you can curl up and watch the world go by. Laptop-free on the weekends, this cafe is all about connection and conversation.",
+                55.946157138102585, -3.200719378632662);
         locations.add(l6);
 
-        TourLocation l7 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l7 = new TourLocation("The Milkman",
+                "Finally, a city-center cafe tour isn’t complete without a visit to the Milkman. With two cafes called the Milkman, one at the top and one at the bottom of Cockburn Street, we suggest the one with the shortest queue. They’re both popular, and both excellent, so you should be well taken care of on your way back to the train station.",
+                55.950807815809775, -3.1906311241127265);
         locations.add(l7);
 
         t = new Tour("cafe", "City-Centre Cafe Loop", "Food", locations);
