@@ -98,8 +98,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
 
         // Get LatLng from ShowLocationInfoActivity
-        double destLat = (double) getIntent().getDoubleExtra("Latitude", 0);
-        double destLng = (double) getIntent().getDoubleExtra("Longitude", 0);
+        double destLat = (double) getIntent().getDoubleExtra("latitude", 0);
+        double destLng = (double) getIntent().getDoubleExtra("longitude", 0);
         destinationLocation = new LatLng(destLat, destLng);
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
