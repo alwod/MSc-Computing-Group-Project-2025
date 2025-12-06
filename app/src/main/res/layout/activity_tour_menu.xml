@@ -90,7 +90,7 @@
             android:id="@+id/btnCafe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cafe Tour"
+            android:text="City-Centre Cafe Loop"
             android:textSize="20sp"
             android:layout_marginBottom="12dp"
             android:background="@drawable/bg_button_primary" />
@@ -99,16 +99,16 @@
             android:id="@+id/btnHistorical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Historical Tour"
+            android:text="Edinburgh's Hidden History"
             android:textSize="20sp"
             android:layout_marginBottom="12dp"
             android:background="@drawable/bg_button_primary" />
 
         <Button
-            android:id="@+id/btnLocalBusiness"
+            android:id="@+id/btnNature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Local Businesses Tour"
+            android:text="Nature in the City"
             android:textSize="20sp"
             android:layout_marginBottom="12dp"
             android:background="@drawable/bg_button_primary" />

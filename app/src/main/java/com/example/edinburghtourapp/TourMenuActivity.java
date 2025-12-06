@@ -27,14 +27,14 @@ public class TourMenuActivity extends ComponentActivity {
         Button btnBookshop      = findViewById(R.id.btnBookshop);
         Button btnCafe          = findViewById(R.id.btnCafe);
         Button btnHistorical    = findViewById(R.id.btnHistorical);
-        Button btnLocalBusiness = findViewById(R.id.btnLocalBusiness);
+        Button btnLocalBusiness = findViewById(R.id.btnNature);
 
         // When a button is clicked, build the Tour and send to ShowLocationInfoActivity
         btnBitesPints.setOnClickListener(v -> openTour(createBitesPintsTour()));
         btnBookshop.setOnClickListener(v -> openTour(createBookshopTour()));
         btnCafe.setOnClickListener(v -> openTour(createCafeTour()));
         btnHistorical.setOnClickListener(v -> openTour(createHistoricalTour()));
-        btnLocalBusiness.setOnClickListener(v -> openTour(createLocalBusinessTour()));
+        btnLocalBusiness.setOnClickListener(v -> openTour(createNatureTour()));
     }
 
     // Opens the next screen with the selected Tour
@@ -253,42 +253,43 @@ public class TourMenuActivity extends ComponentActivity {
         return t;
     }
 
-    private Tour createLocalBusinessTour() {
+    private Tour createNatureTour() {
         Tour t;
         LinkedList<TourLocation> locations = new LinkedList<TourLocation>();
-        TourLocation l1 = new TourLocation("",
-                "",
-                55.0, -3.0);
+
+        TourLocation l1 = new TourLocation("National Galleries Modern 1",
+                "Start this tour outside the National Galleries Modern 1 campus to see the land feature by landscape architect Charles Jencks. After you explore the museum, head out the back garden and start your walk along the Water of Leith.",
+                55.950894958542236, -3.226992372536922);
         locations.add(l1);
 
-        TourLocation l2 = new TourLocation("",
-                "",
+        TourLocation l2 = new TourLocation("Water of Leith",
+                "A 13-mile walk from beginning to end, the Walkway along the Water of Leith takes you away from the hustle and bustle of the city. By starting from Modern One and walking to the Royal Botanics, you’ll pass through Dean Village and Stockbridge. Keep an eye out for local art installations, as well as the numerous animals that call the Water of Leith home!",
                 55.0, -3.0);
         locations.add(l2);
 
-        TourLocation l3 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l3 = new TourLocation("Royal Botanic Garden",
+                "While you can walk the Water of Leith until the end, we recommend leaving the path at the Royal Botanic Garden. With over 70 acres to explore, you can find plants from all over the world throughout the grounds. The garden is free to visit, but any donations you make go to supporting and preserving biodiversity and horticultural research.",
+                55.96420073138137, -3.2122470604866096);
         locations.add(l3);
 
-        TourLocation l4 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l4 = new TourLocation("Princes St Gardens",
+                "Head up from the Royal Botanic Garden into New Town to explore Princes St Gardens. These gardens, both East and West, have a malodorous history. They used to be Edinburgh’s Nor Loch, which acted as sewage and drainage ponds for waste from the Old Town. This noxious lake was one of the reasons Edinburgh was known as “Auld Reekie” in the Middle Ages. Now, though, the gardens are a beautiful, beloved part of the city!",
+                55.9510639373663, -3.1988460630623776);
         locations.add(l4);
 
-        TourLocation l5 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l5 = new TourLocation("Calton Hill",
+                "If you walk east down Prince St, you’ll come to the steps taking you up Calton Hill. One of the 7 hills of Edinburgh, Calton Hill was modeled after an Athenian Acropolis, including an unfinished version of the Parthenon. The hill also features the National Monument, the City Observatory , the Dugald Stewart Monument, and the Nelson Monument. Head up at sunset for stunning views of the city lighting up.",
+                55.9552553089707840, -3.181870243748458);
         locations.add(l5);
 
-        TourLocation l6 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l6 = new TourLocation("Holyrood Park & Arthur's Seat",
+                "If you’re up for a proper hike, make your way to Holyrood Park and follow signs to the summit of Arthur’s Seat. Another of Edinburgh’s 7 hills, this extinct volcano offers a moderate hike, with a bit of a scramble at the very top. The views of Edinburgh and the surrounding area are more than worth the effort!",
+                55.94419802081812, -3.162829192557789);
         locations.add(l6);
 
-        TourLocation l7 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l7 = new TourLocation("Dr. Neil's Garden",
+                "On the other side of Arthur’s Seat in Duddingston, you can relax after your hike in a secret garden. Dr. Neil’s looks over Duddingston Loch and is the perfect place for calm reflection or meditation. When you’re done reflecting, we recommend heading next door to the Sheep Heid’s Inn, which claims to be the oldest surviving pub in Scotland.",
+                55.94081786101165, -3.1492070647972237);
         locations.add(l7);
 
         t = new Tour("nature", "Nature in the City", "Culture", locations);
