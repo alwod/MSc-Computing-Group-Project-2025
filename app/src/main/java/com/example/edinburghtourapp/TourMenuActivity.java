@@ -50,49 +50,49 @@ public class TourMenuActivity extends ComponentActivity {
         Tour t;
         LinkedList<TourLocation> locations = new LinkedList<TourLocation>();
 
-        TourLocation l1 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l1 = new TourLocation("Civerino's Stockbridge",
+                "Any good food and drink tour should start with a slice of pizza the size of your head, so you’re in luck! To start the tour, make your way down to Civerino’s in Stockbridge for a mean slice or one of their great starters.",
+                55.95928325456785, -3.2117698339064393);
         locations.add(l1);
 
-        TourLocation l2 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l2 = new TourLocation("St. Vincent's",
+                "Next, it’s time for our first pub. Wander up through the beautiful high street of Stockbridge, and down the famous Circus Lane to The Vinnie. This cosy pub serves a wide range of drinks in a historic venue.",
+                55.95817080496498, -3.2028219860295546);
         locations.add(l2);
 
-        TourLocation l3 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l3 = new TourLocation("Good Brothers Wine Cellar",
+                "Keep going up the hill to our next stop: the trendy Good Brothers Wine Cellar. With small bites to accompany their unique wine selection, this beautiful bar is an Edinburgh must-try.",
+                55.95690082261341, -3.1980595455502834);
         locations.add(l3);
 
-        TourLocation l4 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l4 = new TourLocation("Bramble",
+                "While it may be difficult to find, the next stop is worth the search. Located down a surreptitious staircase, Bramble is a fun, dimly-lit cocktail bar. We highly recommend their namesake cocktail, the bramble!",
+                55.95499949631317, -3.1970993897286006);
         locations.add(l4);
 
-        TourLocation l5 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l5 = new TourLocation("Spry Wines",
+                "Then, head back up to the surface-world and make your way down Leith Walk. Spry is another great wine bar with unique pours and light bites. You can also visit their sister cafe downstairs, Ante, for brunch and pastries during the day.",
+                55.95936658344025, -3.18327555904325);
         locations.add(l5);
 
-        TourLocation l6 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l6 = new TourLocation("MIRIN",
+                "Now it’s time to focus on the food again. MIRIN serves Asian-fusion small plates that are perfect for sharing with your tour partner, or for keeping all to yourself! Since the restaurant is so small, you may have to share your table, so come ready to make friends.",
+                55.96229786408493, -3.1787812050706132);
         locations.add(l6);
 
-        TourLocation l7 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l7 = new TourLocation("Victoria Bar",
+                "Then, it’s back to the pub. This friendly neighbourhood pub pours great pints in a great atmosphere. Be sure to say hello to the crocodile on the back wall!",
+                55.96586463547331, -3.1751162185634927);
         locations.add(l7);
 
-        TourLocation l8 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l8 = new TourLocation("The Mother Superior",
+                "As you continue down Leith Walk, let’s pop into another great, neighbourhood pub. The Mother Superior has a wide range of whiskies and a great food menu. We recommend stopping in on a Friday to see the electric harpist perform.",
+                55.96912902888916, -3.172360907466771);
         locations.add(l8);
 
-        TourLocation l9 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l9 = new TourLocation("The Lioness of Leith",
+                "Finally, you end your tour in Leith proper. From cocktails to pints and burgers, there is something for everyone at the Lioness. You can even unwind after your tour with some classic arcade games.",
+                55.97037506330608, -3.1692123344529293);
         locations.add(l9);
 
         t = new Tour("bites_pints", "Bites and Pints Tour", "Food", locations);
