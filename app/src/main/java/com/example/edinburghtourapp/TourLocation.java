@@ -26,4 +26,5 @@ public class TourLocation implements Serializable {
         return latitude; }
     public double getLongitude()   {
         return longitude; }
+
 }

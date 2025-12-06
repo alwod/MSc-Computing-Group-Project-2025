@@ -41,6 +41,8 @@
         android:layout_weight="1"
         android:scrollbars="vertical" />
 
+
+
     <LinearLayout
         style="?android:attr/buttonBarStyle"
         android:orientation="horizontal"
@@ -54,6 +56,12 @@
             android:text="@string/previous"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnViewOnMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/view_on_map" />
 
         <Button
             android:id="@+id/btnNext"

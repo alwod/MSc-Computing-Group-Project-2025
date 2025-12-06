@@ -1,5 +1,6 @@
 package com.example.edinburghtourapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -38,6 +39,7 @@ public class ShowLocationInfoActivity extends AppCompatActivity {
         tvCounter    = findViewById(R.id.tvCounter);
         btnPrev      = findViewById(R.id.btnPrev);
         btnNext      = findViewById(R.id.btnNext);
+        btnViewOnMap = findViewById(R.id.btnViewOnMap);
 
         tvTourName.setText(tour.getName());
         tvCategory.setText(tour.getCategory());
@@ -56,6 +58,15 @@ public class ShowLocationInfoActivity extends AppCompatActivity {
             }
         });
 
+        btnViewOnMap.setOnClickListener(v -> {
+            TourLocation loc = tour.getStops().get(currentIndex);
+
+            Intent intent = new Intent(ShowLocationInfoActivity.this, MapsActivity.class);
+            intent.putExtra("location_name", loc.getTitle());
+            intent.putExtra("latitude",     loc.getLatitude());
+            intent.putExtra("longitude",    loc.getLongitude());
+            startActivity(intent);
+        });
         // Show the first stop
         showCurrentStop();
     }
