@@ -203,49 +203,49 @@ public class TourMenuActivity extends ComponentActivity {
         Tour t;
         LinkedList<TourLocation> locations = new LinkedList<TourLocation>();
 
-        TourLocation l1 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l1 = new TourLocation("Mary, Queen of Scot's Bath House",
+                "Outside the gates of Holyrood Palace, you’ll find a stone building with a plaque that says the building shares an association with Mary, Queen of Scots (1542 –1587). While little is known about the building, Queen Mary did reside in Holyrood Palace, and the building was once part of the original boundary wall of the palace.",
+                55.953885372654064, -3.1742928984891217);
         locations.add(l1);
 
-        TourLocation l2 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l2 = new TourLocation("Bakehouse Close",
+                "From Holyrood Palace, head a short distance up the Royal Mile and turn down Bakehouse Close. On the left, you’ll find the courtyard of the former Cock and Trumpet Pub, where men could find female companionship. Fans of the show Outlander will recognize the Close as the location of Jamie’s printshop.",
+                55.951133969932144, -3.1792099783952237);
         locations.add(l2);
 
-        TourLocation l3 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l3 = new TourLocation("Museum of Edinburgh",
+                "When you leave Bakehouse Close and turn left back onto the Royal Mile, take a few short steps to the entrance of the Museum of Edinburgh. This free museum takes visitors through its unique permanent collection and 16th century building. Be sure to check out their rotating special exhibitions as well!",
+                55.951443989557774, -3.1793484053425383);
         locations.add(l3);
 
-        TourLocation l4 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l4 = new TourLocation("John Knox House",
+                "Head further up the street and enter the John Knox House, the oldest, original surviving medieval building on the Mile. You can tour the house, as well as visit the Scottish Storytelling Centre, a storytelling venue with programming year-round.",
+                55.95063474192641, -3.1850442673285513);
         locations.add(l4);
 
-        TourLocation l5 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l5 = new TourLocation("The Heart of Midlothian",
+                "As you continue up the Royal Mile, pause in the courtyard of St. Giles Cathedral to admire the Heart of Midlothian. The mosaic marks the former entrance to Edinburgh’s Old Tollbooth, a municipal building since the 14th century. While people today spit on the heart for good luck in love, the tradition was most likely started by people spitting on the location out of disdain for the public executions that used to take place in the tollbooth.",
+                55.94963398695388, -3.191448549563111);
         locations.add(l5);
 
-        TourLocation l6 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l6 = new TourLocation("Thistle Chapel, St. Giles Cathedral",
+                "Then, head into St. Giles Cathedral and go to the back right of the building. Behind the gates is Thistle Chapel. This gorgeously carved room is home to Scotland chivalric Order of the Thistle. The chapel is only open when a staff member is available to supervise, and they’ll be happy to answer your questions about the coat of arms that line the walls. Try to spot the three angels with bagpipes hidden in the carvings!",
+                55.94937410558156, -3.190377776411825);
         locations.add(l6);
 
-        TourLocation l7 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l7 = new TourLocation("The Witches Well",
+                "To find this memorial for those burned at the stake in Scotland between 1472 and 1722, walk all the way up the Royal Mile, almost to the entrance to the castle. When you reach the Tartan Weaving Mill and Experience, look down the alley to your right and you will see the plaque on the side of the building. Hundreds of people falsely accused of witchcraft perished outside the castle gates during a dark chapter of the city’s history.",
+                55.94896816335771, -3.1961784304951153);
         locations.add(l7);
 
-        TourLocation l8 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l8 = new TourLocation("Surgeon's Hall Museum",
+                "If you have a sensitive stomach or a delicate constitution, you may want to skip this stop. Owned by The Royal College of Surgeons of Edinburgh, the collection takes visitors through the evolution of surgery and its techniques throughout history. From human remains to surgical instruments, the museum is a deep dive into the history of surgery.",
+                55.94656812917011, -3.1851223649546063);
         locations.add(l8);
 
-        TourLocation l9 = new TourLocation("",
-                "",
-                55.0, -3.0);
+        TourLocation l9 = new TourLocation("Dovecot Studios",
+                "Located in a Victorian bath house, this studio aims to maintain heritage looming and weaving techniques. Visitors can view the artists at work from the viewing balcony, then head down to the gift shop and cafe afterwards for a well-deserved treat!",
+                55.94832536526945, -3.184779042202845);
         locations.add(l9);
 
         t = new Tour("historical", "Edinburgh's Hidden History", "History", locations);
