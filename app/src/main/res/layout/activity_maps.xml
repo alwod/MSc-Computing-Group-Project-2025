@@ -25,9 +25,9 @@
 
             <Button
                 android:id="@+id/infoButton"
-                android:layout_width="99dp"
+                android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="55dp"
                 android:text="Show Info Again"></Button>
 
             <Button
@@ -38,9 +38,9 @@
 
             <Button
                 android:id="@+id/nextStopButton"
-                android:layout_width="200dp"
+                android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:text="NEXT STOP">
+                android:text="NEXT  STOP">
             </Button>
         </LinearLayout>
     </LinearLayout>
