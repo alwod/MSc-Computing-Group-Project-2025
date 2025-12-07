@@ -5,12 +5,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.ComponentActivity;
 import androidx.activity.EdgeToEdge;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ShowLocationInfoActivity extends ComponentActivity {
     private Tour tour;
@@ -23,7 +28,9 @@ public class ShowLocationInfoActivity extends ComponentActivity {
     private TextView tvCounter;
     private Button btnPrev;
     private Button btnViewOnMap;
+    private Button btnSaveTour;
     private Button btnNext;
+    private Button btnBackToMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +54,8 @@ public class ShowLocationInfoActivity extends ComponentActivity {
         btnPrev      = findViewById(R.id.btnPrev);
         btnNext      = findViewById(R.id.btnNext);
         btnViewOnMap = findViewById(R.id.btnViewOnMap);
+        btnBackToMenu = findViewById(R.id.btnBackToMenu);
+        btnSaveTour = findViewById(R.id.btnSaveTour);
 
         tvTourName.setText(tour.getName());
         tvCategory.setText(tour.getCategory());
@@ -78,6 +87,25 @@ public class ShowLocationInfoActivity extends ComponentActivity {
         });
         // Show the first stop
         showCurrentStop();
+
+        btnSaveTour.setOnClickListener(v -> {
+            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+            FirebaseFirestore.getInstance()
+                    .collection("users")
+                    .document(uid)
+                    .update("savedTours", FieldValue.arrayUnion(tour.getId()))
+                    .addOnSuccessListener(unused ->
+                            Toast.makeText(this, "Tour saved!", Toast.LENGTH_SHORT).show()
+                    )
+                    .addOnFailureListener(e ->
+                            Toast.makeText(this, "Failed to save tour", Toast.LENGTH_SHORT).show()
+                    );
+        });
+
+        btnBackToMenu.setOnClickListener(v -> {
+            goToTourMenu();
+        });
     }
 
     private void showCurrentStop() {
@@ -91,5 +119,11 @@ public class ShowLocationInfoActivity extends ComponentActivity {
 
         btnPrev.setEnabled(currentIndex > 0);
         btnNext.setEnabled(currentIndex < tour.getStops().size() - 1);
+    }
+
+    private void goToTourMenu() {
+        Intent intent = new Intent(this, TourMenuActivity.class);
+
+        startActivity(intent);
     }
 } // End of ShowLocationInfoActivity
