@@ -12,7 +12,8 @@
         android:inputType="textEmailAddress"
         android:autofillHints="emailAddress"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"/>
 
     <!-- Password input -->
     <EditText
@@ -21,7 +22,8 @@
         android:inputType="textPassword"
         android:autofillHints="password"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"/>
 
     <!-- Create account button -->
     <Button

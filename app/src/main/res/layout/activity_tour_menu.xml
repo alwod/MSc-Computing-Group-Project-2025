@@ -69,6 +69,12 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <Button
+            android:id="@+id/btnSavedTours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/saved_tours" />
+
+        <Button
             android:id="@+id/btnBitesPints"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
