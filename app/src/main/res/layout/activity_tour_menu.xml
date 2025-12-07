@@ -38,7 +38,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@android:color/transparent"
-            android:src="@android:drawable/ic_menu_myplaces"
+            android:src="@android:drawable/ic_menu_manage"
             android:contentDescription="@string/profile" />
     </LinearLayout>
 
@@ -109,6 +109,16 @@
             android:textSize="20sp"
             android:layout_marginBottom="12dp"
             android:background="@drawable/bg_button_primary" />
+
+        <Button
+            android:id="@+id/btnNature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nature Tour"
+            android:textSize="20sp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_button_primary"/>
+
 
     </LinearLayout>
 

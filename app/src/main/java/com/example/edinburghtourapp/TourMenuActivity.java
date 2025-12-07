@@ -28,6 +28,7 @@ public class TourMenuActivity extends AppCompatActivity {
         Button btnBookshop   = findViewById(R.id.btnBookshop);
         Button btnCafe       = findViewById(R.id.btnCafe);
         Button btnHistorical = findViewById(R.id.btnHistorical);
+        Button btnNature = findViewById(R.id.btnNature);
 
         //Saved Tours button
         Button btnSavedTours = findViewById(R.id.btnSavedTours);
@@ -47,6 +48,10 @@ public class TourMenuActivity extends AppCompatActivity {
 
         btnHistorical.setOnClickListener(
                 v -> openTour(ToursRepository.TOUR_HISTORY)
+        );
+
+        btnNature.setOnClickListener(
+                v -> openTour(ToursRepository.TOUR_NATURE)
         );
 
         if (btnSavedTours != null) {

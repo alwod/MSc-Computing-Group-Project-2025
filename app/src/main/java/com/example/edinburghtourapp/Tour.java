@@ -10,7 +10,7 @@ public class Tour implements Serializable {
     private String category;                 // e.g. "Food", "History"
     private LinkedList<TourLocation> stops;
 
-    public Tour(String id, String title, String category, LinkedList<TourLocation> stops) {
+    public Tour(String id, String name, String category, LinkedList<TourLocation> stops) {
         this.id = id;
         this.name = name;
         this.category = category;
