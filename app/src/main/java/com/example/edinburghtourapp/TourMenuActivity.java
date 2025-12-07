@@ -49,7 +49,7 @@ public class TourMenuActivity extends ComponentActivity {
         );
 
         btnNature.setOnClickListener(
-                v -> openTour(TourRepository.TOUR_NATURE)
+                v -> openTour(ToursRepository.TOUR_NATURE)
         );
 
         if (btnSavedTours != null) {
