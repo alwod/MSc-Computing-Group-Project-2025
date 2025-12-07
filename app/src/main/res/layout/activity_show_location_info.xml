@@ -35,11 +35,12 @@
 
     <TextView
         android:id="@+id/tvDescription"
-        android:layout_marginTop="8dp"
-        android:layout_width="match_parent"
+        android:layout_width="392dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:layout_weight="1"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        android:textSize="16sp"/>
 
 
 
