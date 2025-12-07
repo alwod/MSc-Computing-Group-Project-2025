@@ -57,7 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
         // Show email
         tvEmail.setText(user.getEmail());
 
-        // (Optional) ensure spinner has an adapter even if xml entries missing
+
         if (spMethod.getAdapter() == null) {
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                     this, R.array.travel_methods, android.R.layout.simple_spinner_item);
@@ -98,7 +98,12 @@ public class ProfileActivity extends AppCompatActivity {
             data.put("updatedAt", FieldValue.serverTimestamp());
 
             doc.set(data, SetOptions.merge())
-                    .addOnSuccessListener(x -> toast("Saved"))
+                    .addOnSuccessListener(x -> {
+                        toast("Saved");
+                        Intent i = new Intent(ProfileActivity.this, TourMenuActivity.class);
+                        startActivity(i);
+                        finish();
+                    })
                     .addOnFailureListener(e -> toast(e.getMessage()));
         });
 
