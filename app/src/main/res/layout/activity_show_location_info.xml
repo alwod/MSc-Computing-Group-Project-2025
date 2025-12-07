@@ -71,6 +71,22 @@
             android:layout_marginStart="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnSaveTour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save Tour" />
+
+
+        <Button
+            android:id="@+id/btnBackToMenu"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="@string/back_to_menu"
+            android:layout_marginStart="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
 </LinearLayout>

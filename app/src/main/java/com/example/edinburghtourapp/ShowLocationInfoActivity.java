@@ -4,8 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ShowLocationInfoActivity extends AppCompatActivity {
 
@@ -19,7 +24,10 @@ public class ShowLocationInfoActivity extends AppCompatActivity {
     private TextView tvCounter;
     private Button btnPrev;
     private Button btnViewOnMap;
+
+    private Button btnSaveTour;
     private Button btnNext;
+    private Button btnBackToMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +50,9 @@ public class ShowLocationInfoActivity extends AppCompatActivity {
         btnPrev      = findViewById(R.id.btnPrev);
         btnNext      = findViewById(R.id.btnNext);
         btnViewOnMap = findViewById(R.id.btnViewOnMap);
+        btnBackToMenu = findViewById(R.id.btnBackToMenu);
+        btnSaveTour = findViewById(R.id.btnSaveTour);
+
 
         tvTourName.setText(tour.getName());
         tvCategory.setText(tour.getCategory());
@@ -71,6 +82,25 @@ public class ShowLocationInfoActivity extends AppCompatActivity {
         });
         // Show the first stop
         showCurrentStop();
+
+        btnSaveTour.setOnClickListener(v -> {
+            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+            FirebaseFirestore.getInstance()
+                    .collection("users")
+                    .document(uid)
+                    .update("savedTours", FieldValue.arrayUnion(tour.getId()))
+                    .addOnSuccessListener(unused ->
+                            Toast.makeText(this, "Tour saved!", Toast.LENGTH_SHORT).show()
+                    )
+                    .addOnFailureListener(e ->
+                            Toast.makeText(this, "Failed to save tour", Toast.LENGTH_SHORT).show()
+                    );
+        });
+
+        btnBackToMenu.setOnClickListener(v -> {
+            finish();
+        });
     }
 
     private void showCurrentStop() {
