@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import java.util.LinkedList;
-
 public class TourMenuActivity extends ComponentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

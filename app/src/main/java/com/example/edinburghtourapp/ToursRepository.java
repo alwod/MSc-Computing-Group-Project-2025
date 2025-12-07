@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 public class ToursRepository {
-
     public static final String TOUR_BOOKSHOP    = "bookshop";
     public static final String TOUR_CAFE_LOOP   = "cafe_loop";
     public static final String TOUR_BITES_PINTS = "bites_pints";
@@ -33,7 +32,6 @@ public class ToursRepository {
     }
 
     //Bookshop Tour
-
     private static void buildBookshopTour() {
         LinkedList<TourLocation> stops = new LinkedList<>();
 
@@ -92,7 +90,6 @@ public class ToursRepository {
     }
 
     //City-Centre Cafe Loop
-
     private static void buildCafeLoopTour() {
         LinkedList<TourLocation> stops = new LinkedList<>();
 
@@ -141,7 +138,6 @@ public class ToursRepository {
     }
 
     //Bites and Pints Tour
-
     private static void buildBitesAndPintsTour() {
         LinkedList<TourLocation> stops = new LinkedList<>();
 
@@ -200,7 +196,6 @@ public class ToursRepository {
     }
 
     //Edinburgh’s Hidden History
-
     private static void buildHistoryTour() {
         LinkedList<TourLocation> stops = new LinkedList<>();
 
@@ -259,7 +254,6 @@ public class ToursRepository {
     }
 
     //Nature in the City
-
     private static void buildNatureTour() {
         LinkedList<TourLocation> stops = new LinkedList<>();
 
@@ -297,8 +291,6 @@ public class ToursRepository {
                 "Dr. Neil’s Garden",
                 "On the other side of Arthur’s Seat in Duddingston, you can relax after your hike in a secret garden. Dr. Neil’s looks over Duddingston Loch and is the perfect place for calm reflection or meditation. When you’re done reflecting, we recommend heading next door to the Sheep Heid’s Inn, which claims to be the oldest surviving pub in Scotland.",
                 55.94081786101165, -3.1492070647972237));
-
-
 
 
         Tour t = new Tour(

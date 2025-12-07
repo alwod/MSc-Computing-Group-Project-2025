@@ -84,15 +84,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng destinationLocation;
 
     // Variables for tracking the tour
-    Tour tour;
-    int tourIndex;
-    boolean hasStartedTour = false;
+    private Tour tour;
+    private int tourIndex;
+    private boolean hasStartedTour = false;
 
     // Variables for the timer
-    Handler handler = new Handler();
-    Runnable runnable;
+    private Handler handler = new Handler();
+    private Runnable runnable;
     // Delay is in milliseconds; 10000 is 10 seconds
-    int delay = 10000;
+    private int delay = 10000;
 
     // First method to run.
     @Override
@@ -181,7 +181,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     } // End of onMapReady method
 
     // Loops through the tour
-    public void loopTour() {
+    private void loopTour() {
         // Clear the map, otherwise markers will start overlapping. Don't know how to delete specific markers yet
         mMap.clear();
         // Add markers on the map
@@ -197,7 +197,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 16));
     } // End of loopTour method
 
-    public void addMarker(LatLng point, boolean isUser) {
+    private void addMarker(LatLng point, boolean isUser) {
         // A marker option is basically a list of things a marker can have, such as position, icon, and colour
         MarkerOptions options = new MarkerOptions();
 
@@ -215,7 +215,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     } // End of addMarker method
 
     // Handles sending the tour object to ShowLocationInfo
-    public void backToInfoScreen() {
+    private void backToInfoScreen() {
         Intent intent = new Intent(this, ShowLocationInfoActivity.class);
 
         intent.putExtra("tour", tour);
