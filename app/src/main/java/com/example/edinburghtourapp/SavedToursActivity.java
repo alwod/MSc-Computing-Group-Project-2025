@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.graphics.Color;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -58,6 +59,8 @@ public class SavedToursActivity extends AppCompatActivity {
                         Button b = new Button(SavedToursActivity.this);
                         b.setText(t.getName());
                         b.setAllCaps(false);
+                        b.setTextColor(Color.BLACK);
+                        b.setTextSize(16);
 
                         b.setOnClickListener(v -> {
                             Intent i = new Intent(SavedToursActivity.this, ShowLocationInfoActivity.class);
