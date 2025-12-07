@@ -25,7 +25,8 @@
             android:layout_height="60dp"
             android:contentDescription="@string/app_name"
             android:background="@drawable/bg_button_primary"
-            android:src="@drawable/logo" />
+            android:src="@drawable/logo"
+            android:layout_marginTop="32dp"/>
 
         <View
             android:layout_width="0dp"
@@ -35,8 +36,8 @@
         <!-- Profile icon button (goes to ProfileActivity) -->
         <ImageButton
             android:id="@+id/btnProfile"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@android:color/transparent"
             android:src="@android:drawable/ic_menu_myplaces"
             android:contentDescription="@string/profile" />
