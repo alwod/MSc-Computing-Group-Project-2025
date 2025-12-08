@@ -9,8 +9,7 @@ public class TourLocation implements Serializable {
     private double latitude;    // Map latitude
     private double longitude;   // Map longitude
 
-    public TourLocation(String name, String description,
-                        double latitude, double longitude) {
+    public TourLocation(String title, String description, double latitude, double longitude) {
         this.title = title;
         this.description = description;
         this.latitude = latitude;

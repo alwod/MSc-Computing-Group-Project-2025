@@ -18,13 +18,12 @@ public class ShowLocationInfoActivity extends AppCompatActivity {
     private int currentIndex = 0;
 
     private TextView tvTourName;
-    private TextView tvCategory;
     private TextView tvStopTitle;
+    private TextView tvCategory;
     private TextView tvDescription;
     private TextView tvCounter;
     private Button btnPrev;
     private Button btnViewOnMap;
-
     private Button btnSaveTour;
     private Button btnNext;
     private Button btnBackToMenu;
@@ -43,8 +42,8 @@ public class ShowLocationInfoActivity extends AppCompatActivity {
 
         // Link Java variables to XML views
         tvTourName   = findViewById(R.id.tvTourName);
-        tvCategory   = findViewById(R.id.tvCategory);
         tvStopTitle  = findViewById(R.id.tvStopTitle);
+        tvCategory   = findViewById(R.id.tvCategory);
         tvDescription = findViewById(R.id.tvDescription);
         tvCounter    = findViewById(R.id.tvCounter);
         btnPrev      = findViewById(R.id.btnPrev);
