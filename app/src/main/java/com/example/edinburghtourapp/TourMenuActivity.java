@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-
 import androidx.activity.ComponentActivity;
+
 // Tour selection screen
 
 public class TourMenuActivity extends ComponentActivity {

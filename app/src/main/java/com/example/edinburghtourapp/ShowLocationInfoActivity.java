@@ -6,8 +6,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import androidx.activity.ComponentActivity;
+
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FieldValue;
@@ -78,6 +78,8 @@ public class ShowLocationInfoActivity extends ComponentActivity {
             intent.putExtra("location_name", loc.getTitle());
             intent.putExtra("latitude",     loc.getLatitude());
             intent.putExtra("longitude",    loc.getLongitude());
+            intent.putExtra("currentIndex", currentIndex);
+            intent.putExtra("tour", tour);
             startActivity(intent);
         });
         // Show the first stop
