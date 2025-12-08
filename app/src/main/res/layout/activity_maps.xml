@@ -28,13 +28,15 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="110dp"
-                android:text="Select Stop"></Button>
+                android:text="Select Stop"
+                android:background="@drawable/bg_button_primary"></Button>
 
             <Button
                 android:id="@+id/remakeRouteButton"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:text="Find Route"></Button>
+                android:text="Find Route"
+                android:background="@drawable/bg_button_primary"></Button>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
