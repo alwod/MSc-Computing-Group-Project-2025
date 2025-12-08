@@ -2,7 +2,6 @@ package com.example.edinburghtourapp;
 
 import java.io.Serializable;
 import java.util.LinkedList;
-import java.util.List;
 
 public class Tour implements Serializable {
 
@@ -11,7 +10,7 @@ public class Tour implements Serializable {
     private String category;                 // e.g. "Food", "History"
     private LinkedList<TourLocation> stops;
 
-    public Tour(String id, String title, String category, LinkedList<TourLocation> stops) {
+    public Tour(String id, String name, String category, LinkedList<TourLocation> stops) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -31,6 +30,7 @@ public class Tour implements Serializable {
     public String getCategory(){
         return category; }
     public LinkedList<TourLocation> getStops() {
+
         return stops;
     }
 }
