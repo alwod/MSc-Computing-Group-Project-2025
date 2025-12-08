@@ -101,7 +101,9 @@ public class ShowLocationInfoActivity extends ComponentActivity {
         });
 
         btnBackToMenu.setOnClickListener(v -> {
-            finish();
+            Intent intent = new Intent(ShowLocationInfoActivity.this, TourMenuActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
         });
     }
 
