@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.ComponentActivity;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
@@ -19,14 +18,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
-
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class AuthActivity extends ComponentActivity {
+public class AuthActivity extends AppCompatActivity {
 
     // ---------- FIELDS ----------
     private FirebaseAuth auth;
@@ -46,8 +43,6 @@ public class AuthActivity extends ComponentActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FirebaseApp.initializeApp(this);
-        
         auth = FirebaseAuth.getInstance();
 
         // If already logged in, skip straight to profile
@@ -98,30 +93,49 @@ public class AuthActivity extends ComponentActivity {
         googleLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
-                    if (result.getData() == null) {
-                        toast(getString(R.string.msg_google_cancelled));
+
+                    Intent data = result.getData();
+                    if (data == null) {
+                        tvMsg.setText("Google sign-in: no data returned");
                         return;
                     }
+
                     try {
                         GoogleSignInAccount acct = GoogleSignIn
-                                .getSignedInAccountFromIntent(result.getData())
+                                .getSignedInAccountFromIntent(data)
                                 .getResult(ApiException.class);
 
                         if (acct == null) {
-                            toast(getString(R.string.msg_google_failed));
+                            tvMsg.setText("Google sign-in failed: no account");
+                            return;
+                        }
+
+                        String idToken = acct.getIdToken();
+                        if (idToken == null) {
+                            tvMsg.setText("Google sign-in: no ID token (check default_web_client_id)");
                             return;
                         }
 
                         AuthCredential cred =
-                                GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+                                GoogleAuthProvider.getCredential(idToken, null);
 
+                        tvMsg.setText("Signing in with Google...");
                         auth.signInWithCredential(cred)
-                                .addOnSuccessListener(r -> goProfile())
-                                .addOnFailureListener(e -> toast(e.getMessage()));
+                                .addOnSuccessListener(r -> {
+                                    tvMsg.setText("Google sign-in success");
+                                    goProfile();
+                                })
+                                .addOnFailureListener(e ->
+                                        tvMsg.setText("Firebase sign-in failed: " + e.getMessage())
+                                );
+
                     } catch (ApiException e) {
-                        toast(getString(R.string.msg_google_error_prefix) + e.getStatusCode());
+                        // status code error
+                        tvMsg.setText("Google error code: " + e.getStatusCode());
                     }
-                });
+                }
+        );
+
 
         btnGoogle.setOnClickListener(v ->
                 googleClient.signOut().addOnCompleteListener(task ->
