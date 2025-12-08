@@ -19,14 +19,17 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <!-- Logo  -->
+
         <ImageView
             android:id="@+id/imgLogo"
-            android:layout_width="120dp"
-            android:layout_height="60dp"
+            android:layout_width="160dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginStart="100dp"
+            android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
-            android:background="@drawable/bg_button_primary"
-            android:src="@drawable/logo"
-            android:layout_marginTop="32dp"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/logo" />
 
         <View
             android:layout_width="0dp"
@@ -36,11 +39,11 @@
         <!-- Profile icon button (goes to ProfileActivity) -->
         <ImageButton
             android:id="@+id/btnProfile"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="77dp"
+            android:layout_height="79dp"
             android:background="@android:color/transparent"
-            android:src="@android:drawable/ic_menu_myplaces"
-            android:contentDescription="@string/profile" />
+            android:contentDescription="@string/profile"
+            android:src="@android:drawable/ic_menu_manage" />
     </LinearLayout>
 
     <!-- "Select your tour" -->
@@ -97,7 +100,7 @@
             android:id="@+id/btnCafe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="City-Centre Cafe Loop"
+            android:text="Cafe Tour"
             android:textSize="20sp"
             android:layout_marginBottom="12dp"
             android:background="@drawable/bg_button_primary" />
@@ -106,7 +109,7 @@
             android:id="@+id/btnHistorical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Edinburgh's Hidden History"
+            android:text="Historical Tour"
             android:textSize="20sp"
             android:layout_marginBottom="12dp"
             android:background="@drawable/bg_button_primary" />
@@ -115,10 +118,12 @@
             android:id="@+id/btnNature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nature in the City"
+            android:text="Nature Tour"
             android:textSize="20sp"
             android:layout_marginBottom="12dp"
-            android:background="@drawable/bg_button_primary" />
+            android:background="@drawable/bg_button_primary"/>
+
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
