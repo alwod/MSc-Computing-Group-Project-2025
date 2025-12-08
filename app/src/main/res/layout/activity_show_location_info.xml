@@ -67,21 +67,24 @@
             android:id="@+id/btnPrev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/previous" />
+            android:text="@string/previous"
+            android:background="@drawable/bg_button_primary"/>
 
         <Button
             android:id="@+id/btnViewOnMap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="@string/view_on_map" />
+            android:text="@string/view_on_map"
+            android:background="@drawable/bg_button_primary"/>
 
         <Button
             android:id="@+id/btnNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="@string/next" />
+            android:text="@string/next"
+            android:background="@drawable/bg_button_primary"/>
     </LinearLayout>
 
     <!-- Save + Back row -->
@@ -97,7 +100,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Save Tour" />
+            android:text="Save Tour"
+            android:background="@drawable/bg_button_primary"/>
 
         <Button
             android:id="@+id/btnBackToMenu"
@@ -105,7 +109,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="8dp"
-            android:text="@string/back_to_menu" />
+            android:text="@string/back_to_menu"
+            android:background="@drawable/bg_button_primary"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -9,7 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.graphics.Color;
 
-import androidx.appcompat.app.ComponentActivity;
+
+import androidx.activity.ComponentActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
