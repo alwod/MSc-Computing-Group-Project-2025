@@ -2,28 +2,24 @@ package com.example.edinburghtourapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.ComponentActivity;
-import androidx.activity.EdgeToEdge;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.appcompat.app.ComponentActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ShowLocationInfoActivity extends ComponentActivity {
+
     private Tour tour;
-    private int currentIndex;
+    private int currentIndex = 0;
 
     private TextView tvTourName;
-    private TextView tvCategory;
     private TextView tvStopTitle;
+    private TextView tvCategory;
     private TextView tvDescription;
     private TextView tvCounter;
     private Button btnPrev;
@@ -43,12 +39,11 @@ public class ShowLocationInfoActivity extends ComponentActivity {
             finish();
             return;
         }
-        currentIndex = (int) getIntent().getIntExtra("index", 0);
 
         // Link Java variables to XML views
         tvTourName   = findViewById(R.id.tvTourName);
-        tvCategory   = findViewById(R.id.tvCategory);
         tvStopTitle  = findViewById(R.id.tvStopTitle);
+        tvCategory   = findViewById(R.id.tvCategory);
         tvDescription = findViewById(R.id.tvDescription);
         tvCounter    = findViewById(R.id.tvCounter);
         btnPrev      = findViewById(R.id.btnPrev);
@@ -56,6 +51,7 @@ public class ShowLocationInfoActivity extends ComponentActivity {
         btnViewOnMap = findViewById(R.id.btnViewOnMap);
         btnBackToMenu = findViewById(R.id.btnBackToMenu);
         btnSaveTour = findViewById(R.id.btnSaveTour);
+
 
         tvTourName.setText(tour.getName());
         tvCategory.setText(tour.getCategory());
@@ -81,8 +77,6 @@ public class ShowLocationInfoActivity extends ComponentActivity {
             intent.putExtra("location_name", loc.getTitle());
             intent.putExtra("latitude",     loc.getLatitude());
             intent.putExtra("longitude",    loc.getLongitude());
-            intent.putExtra("index", currentIndex);
-            intent.putExtra("tour", tour);
             startActivity(intent);
         });
         // Show the first stop
@@ -104,7 +98,7 @@ public class ShowLocationInfoActivity extends ComponentActivity {
         });
 
         btnBackToMenu.setOnClickListener(v -> {
-            goToTourMenu();
+            finish();
         });
     }
 
@@ -120,10 +114,4 @@ public class ShowLocationInfoActivity extends ComponentActivity {
         btnPrev.setEnabled(currentIndex > 0);
         btnNext.setEnabled(currentIndex < tour.getStops().size() - 1);
     }
-
-    private void goToTourMenu() {
-        Intent intent = new Intent(this, TourMenuActivity.class);
-
-        startActivity(intent);
-    }
-} // End of ShowLocationInfoActivity
+}
