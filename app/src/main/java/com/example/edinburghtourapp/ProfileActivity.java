@@ -25,7 +25,6 @@ public class ProfileActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
     private FirebaseFirestore db;
-
     private EditText etFirst, etLast;
     private TextView tvEmail;
     private Spinner spMethod;
@@ -37,7 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
 
-        // If not logged in, go back to auth screen
+        // If not logged in, go to auth screen
         if (user == null) {
             startActivity(new Intent(this, AuthActivity.class));
             finish();
@@ -51,8 +50,10 @@ public class ProfileActivity extends AppCompatActivity {
         etLast  = findViewById(R.id.etLast);
         tvEmail = findViewById(R.id.tvEmail);
         spMethod = findViewById(R.id.spMethod);
+
         Button btnSave   = findViewById(R.id.btnSave);
         Button btnLogout = findViewById(R.id.btnLogout);
+        Button btnBackToMenuProfile = findViewById(R.id.btnBackToMenuProfile);
 
         // Show email
         tvEmail.setText(user.getEmail());
@@ -68,7 +69,7 @@ public class ProfileActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         DocumentReference doc = db.collection("users").document(user.getUid());
 
-        // Load profile (if no doc, create minimal one with email)
+        // Load profile
         doc.get().addOnSuccessListener(snap -> {
             if (snap.exists()) {
                 etFirst.setText(snap.getString("firstName"));
@@ -84,7 +85,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        // Save button → write first/last/method (merge so we don't overwrite other fields)
+        // Save button
         btnSave.setOnClickListener(v -> {
             String first = etFirst.getText().toString().trim();
             String last  = etLast.getText().toString().trim();
@@ -107,10 +108,17 @@ public class ProfileActivity extends AppCompatActivity {
                     .addOnFailureListener(e -> toast(e.getMessage()));
         });
 
-        // Logout → back to AuthActivity
+        // Logout > back to AuthActivity
         btnLogout.setOnClickListener(v -> {
             auth.signOut();
             startActivity(new Intent(this, AuthActivity.class));
+            finish();
+        });
+
+        //Back to Tour Menu
+        btnBackToMenuProfile.setOnClickListener(v -> {
+            Intent i = new Intent(ProfileActivity.this, TourMenuActivity.class);
+            startActivity(i);
             finish();
         });
     }

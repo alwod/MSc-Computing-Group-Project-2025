@@ -3,6 +3,7 @@
     android:background="@color/et_cream"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:orientation="vertical"
         android:padding="24dp"
@@ -91,6 +92,17 @@
             android:layout_marginTop="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnBackToMenuProfile"
+            android:layout_width="323dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/back_to_menu"
+            android:textStyle="bold" />
+
     </LinearLayout>
 </ScrollView>
 
