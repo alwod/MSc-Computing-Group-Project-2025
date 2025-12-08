@@ -20,6 +20,11 @@
             android:id="@+id/savedToursContainer"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="48dp"
+            android:gravity="center_horizontal"/>
+
     </LinearLayout>
 </ScrollView>
