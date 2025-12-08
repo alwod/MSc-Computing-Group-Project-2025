@@ -28,7 +28,7 @@
             android:layout_marginStart="100dp"
             android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:src="@drawable/logo" />
 
         <View
