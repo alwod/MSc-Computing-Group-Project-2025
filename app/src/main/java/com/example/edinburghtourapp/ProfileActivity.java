@@ -9,10 +9,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.ComponentActivity;
-import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.FirebaseApp;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -23,11 +21,11 @@ import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.appcompat.app.ComponentActivity;
 public class ProfileActivity extends ComponentActivity {
 
     private FirebaseAuth auth;
     private FirebaseFirestore db;
-
     private EditText etFirst, etLast;
     private TextView tvEmail;
     private Spinner spMethod;
@@ -36,12 +34,10 @@ public class ProfileActivity extends ComponentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FirebaseApp.initializeApp(this);
-        
         auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
 
-        // If not logged in, go back to auth screen
+        // If not logged in, go to auth screen
         if (user == null) {
             startActivity(new Intent(this, AuthActivity.class));
             finish();
@@ -55,13 +51,15 @@ public class ProfileActivity extends ComponentActivity {
         etLast  = findViewById(R.id.etLast);
         tvEmail = findViewById(R.id.tvEmail);
         spMethod = findViewById(R.id.spMethod);
+
         Button btnSave   = findViewById(R.id.btnSave);
         Button btnLogout = findViewById(R.id.btnLogout);
+        Button btnBackToMenuProfile = findViewById(R.id.btnBackToMenuProfile);
 
         // Show email
         tvEmail.setText(user.getEmail());
 
-        // (Optional) ensure spinner has an adapter even if xml entries missing
+
         if (spMethod.getAdapter() == null) {
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                     this, R.array.travel_methods, android.R.layout.simple_spinner_item);
@@ -72,7 +70,7 @@ public class ProfileActivity extends ComponentActivity {
         db = FirebaseFirestore.getInstance();
         DocumentReference doc = db.collection("users").document(user.getUid());
 
-        // Load profile (if no doc, create minimal one with email)
+        // Load profile
         doc.get().addOnSuccessListener(snap -> {
             if (snap.exists()) {
                 etFirst.setText(snap.getString("firstName"));
@@ -88,7 +86,7 @@ public class ProfileActivity extends ComponentActivity {
             }
         });
 
-        // Save button → write first/last/method (merge so we don't overwrite other fields)
+        // Save button
         btnSave.setOnClickListener(v -> {
             String first = etFirst.getText().toString().trim();
             String last  = etLast.getText().toString().trim();
@@ -102,14 +100,26 @@ public class ProfileActivity extends ComponentActivity {
             data.put("updatedAt", FieldValue.serverTimestamp());
 
             doc.set(data, SetOptions.merge())
-                    .addOnSuccessListener(x -> toast("Saved"))
+                    .addOnSuccessListener(x -> {
+                        toast("Saved");
+                        Intent i = new Intent(ProfileActivity.this, TourMenuActivity.class);
+                        startActivity(i);
+                        finish();
+                    })
                     .addOnFailureListener(e -> toast(e.getMessage()));
         });
 
-        // Logout → back to AuthActivity
+        // Logout > back to AuthActivity
         btnLogout.setOnClickListener(v -> {
             auth.signOut();
             startActivity(new Intent(this, AuthActivity.class));
+            finish();
+        });
+
+        //Back to Tour Menu
+        btnBackToMenuProfile.setOnClickListener(v -> {
+            Intent i = new Intent(ProfileActivity.this, TourMenuActivity.class);
+            startActivity(i);
             finish();
         });
     }
